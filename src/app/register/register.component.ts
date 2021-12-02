@@ -1,0 +1,71 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from '../user';
+import { UserService } from '../user.service';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
+
+
+@Component({
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
+})
+export class RegisterComponent implements OnInit {
+  form!: FormGroup;
+  user: User = new User;
+
+  constructor(private userService: UserService, private router: Router,) {
+    this.buildForm();
+  }
+  ngOnInit(): void {
+    
+  }
+  private buildForm() {
+    this.form = new FormGroup({
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      idCardType: new FormControl('', [Validators.required]),
+      idCard: new FormControl('', [Validators.required, Validators.min(1000000), Validators.max(99999999999999)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      confirmPass: new FormControl('', [Validators.required]),
+    });
+
+    this.form.valueChanges
+    .pipe(
+      debounceTime(500)
+    )
+    .subscribe(value => {
+      console.log(value);
+    });
+  }
+
+  public formGet(param:any) {
+    return this.form.get(param);
+  }
+
+  public validForm(param:any) {
+    return this.formGet(param)!.touched && this.formGet(param)!.valid;
+  }
+
+  public invalidForm(param:any) {
+    return this.formGet(param)!.touched && this.formGet(param)!.invalid;
+  }
+
+  registerUser(): void {
+    const value = this.form.value
+    if (this.form.valid) {
+      if (value.password == value.confirmPass && this.form.valid) {
+        this.userService.create(value).subscribe(
+          res => this.router.navigate(['/home'])) 
+      } else {
+        console.log("Las contraseñas no coinciden.")
+      }
+    } else {
+      this.form.markAllAsTouched();
+    }
+
+  }
+
+}

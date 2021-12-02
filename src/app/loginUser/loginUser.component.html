@@ -1,0 +1,51 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container login">
+    <div class="row">
+        <div class="col-md-3 login-left">
+            <img src="https://www.cidenet.com.co/wp-content/uploads/2021/04/cidenet-software-a-la-medida-medellin.png"
+                alt="" />
+            <h4>¡Hola! nos alegra verte por acá :).</h4>
+            <p><b>¿No tienes una cuenta?<br>Presiona el boton "registrarse"</b></p>
+            <input [routerLink]='["/register"]' type="submit" name="" value="Registrarse" /><br />
+        </div>
+        <div class="col-md-9 login-right">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="login-heading">Iniciar Sesión</h3>
+                    <div class="row login-form">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label class="label">Email</label>
+                                <input type="email" class="form-control" [formControl]="emailCtrl"/>
+                                    <p *ngIf="emailCtrl.errors && emailCtrl.dirty">
+                                    <small *ngIf="emailCtrl.hasError('required')">Ingresa un email</small>
+                                    <small *ngIf="emailCtrl.hasError('email')">El email no es valido</small>
+                                    </p>
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label class="label">Contraseña</label>
+                                <input type="password" class="form-control" [formControl]="passwordCtrl" />
+                                <div>
+                                    <p *ngIf="emailCtrl.errors && emailCtrl.dirty">
+                                    <small *ngIf="emailCtrl.hasError('required')">Ingresa una contraseña</small>
+                                    <small *ngIf="emailCtrl.hasError('min')">la contraseña debe ser de minimo 5 o mas dígitos.</small>
+                                    </p>
+                                </div>
+                            </div>
+                            <input type="submit" class="btnlogin" value="Continuar" (click)='loginUser()' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script lang="ts" src="../user.ts"></script>
+<script lang="ts" src="./loginUser.component.ts"></script>
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>

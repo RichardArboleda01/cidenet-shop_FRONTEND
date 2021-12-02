@@ -1,0 +1,111 @@
+.login{
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+    margin-top: 3%;
+    padding: 3%;
+    opacity: 0.9;
+    border-radius: 20px;
+    width: 800px;
+    zoom: 95%;
+}
+.login-left{
+    text-align: center;
+    color: #fff;
+    margin-top: 4%;
+}
+.login-left input{
+    border: none;
+    border-radius: 1.5rem;
+    padding: 4%;
+    width: 78%;
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #383d41;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.login-left input:hover {
+    background-color: #1597E5;
+    color: white;
+}
+.login-right{
+    background: #f8f9fa;
+    border-top-left-radius: 15% 70%;
+    border-bottom-left-radius: 15% 77%;
+}
+.login-left img{
+    margin-top: -10%;
+    margin-bottom: 15%;
+    width: 78%;
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+.login-left p{
+    font-weight: lighter;
+    padding: 10%;
+    color: #fff;
+    margin-top: -3%;
+}
+.login .login-form{
+    padding: 15%;
+    margin-top: 8%;
+}
+.btnlogin{
+    float: right;
+    margin-top: 10%;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    background: #113CFC;
+    color: #fff;
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btnlogin:hover {
+    background-color: #1597E5;
+    color: white;
+  }
+.login .nav-tabs{
+    margin-top: 3%;
+    border: none;
+    background: #0062cc;
+    border-radius: 1.5rem;
+    width: 28%;
+    float: right;
+}
+.login .nav-tabs .nav-link{
+    padding: 2%;
+    height: 34px;
+    font-weight: 600;
+    color: #fff;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+.login .nav-tabs .nav-link:hover{
+    border: none;
+}
+.login .nav-tabs .nav-link.active{
+    width: 100px;
+    color: #0062cc;
+    border: 2px solid #0062cc;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+.login-heading{
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: #495057;
+    font-weight: bold;
+}
