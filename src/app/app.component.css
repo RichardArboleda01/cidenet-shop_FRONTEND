@@ -262,8 +262,8 @@
     width: 1920px;
   }
 
-  /* Responsive Styles */
-  @media screen and (max-width: 767px) {
+ /* Responsive Styles */
+ @media screen and (max-width: 767px) {
     .card-container > *:not(.circle-link) ,
     .terminal {
       width: 100%;
@@ -289,4 +289,5 @@
       display: none;
       visibility: hidden;
     }
-  }
+  } 
+   

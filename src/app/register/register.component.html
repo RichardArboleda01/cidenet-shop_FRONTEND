@@ -1,6 +1,8 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
 <!------ Include the above in your HEAD tag ---------->
 
 <form [formGroup]="form" novalidate>
@@ -31,6 +33,10 @@
                                                 class="help is-danger">
                                                 Introduce tu nombre
                                             </p>
+                                            <p *ngIf="formGet('firstName')!.hasError('pattern')"
+                                                class="help is-danger">
+                                                Tu nombre solo debe contener letras.
+                                            </p>
                                         </div>
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-at"></i>
@@ -54,6 +60,9 @@
                                             *ngIf="formGet('lastName')!.errors && formGet('lastName')!.touched">
                                             <p *ngIf="formGet('lastName')!.hasError('required')" class="help is-danger">
                                                 Introduce tus apellidos
+                                            </p>
+                                            <p *ngIf="formGet('lastName')!.hasError('pattern')" class="help is-danger">
+                                                Tu nombre solo debe contener letras.
                                             </p>
                                         </div>
                                         <span class="icon is-small is-left">
@@ -136,8 +145,8 @@
                                             <p *ngIf="formGet('email')!.hasError('required')" class="help is-danger">
                                                 Introduce tu email
                                             </p>
-                                            <p *ngIf="formGet('email')!.hasError('email')">
-                                                El email que no es válido
+                                            <p *ngIf="formGet('email')!.hasError('pattern')" class="help is-danger">
+                                                El email que ingresaste no es válido
                                             </p>
                                         </div>
                                         <span class="icon is-small is-left">
@@ -163,8 +172,8 @@
                                             <p *ngIf="formGet('password')!.hasError('required')" class="help is-danger">
                                                 Introduce una contraseña
                                             </p>
-                                            <p *ngIf="formGet('password')!.hasError('min')">
-                                                la contraseña debe ser de minimo 5 o mas digitos.
+                                            <p *ngIf="formGet('password')!.hasError('minLength')" class="help is-danger">
+                                                La contraseña debe ser de mínimo 5 o mas dígitos
                                             </p>
                                         </div>
                                         <span class="icon is-small is-left">
@@ -191,7 +200,7 @@
                                             *ngIf="formGet('confirmPass')!.errors && formGet('confirmPass')!.touched">
                                             <p *ngIf="formGet('confirmPass')!.hasError('required')"
                                                 class="help is-danger">
-                                                confirma tu contraseña
+                                                Confirma tu contraseña
                                             </p>
                                         </div>
                                         <span class="icon is-small is-left">

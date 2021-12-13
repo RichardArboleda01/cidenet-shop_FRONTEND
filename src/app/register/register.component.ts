@@ -23,11 +23,11 @@ export class RegisterComponent implements OnInit {
   }
   private buildForm() {
     this.form = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       idCardType: new FormControl('', [Validators.required]),
-      idCard: new FormControl('', [Validators.required, Validators.min(1000000), Validators.max(99999999999999)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      idCard: new FormControl('', [Validators.required, Validators.min(1000000), Validators.max(99999999999999),]),
+      email: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/)]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
       confirmPass: new FormControl('', [Validators.required]),
     });

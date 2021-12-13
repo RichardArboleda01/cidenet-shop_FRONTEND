@@ -22,6 +22,7 @@ passwordCtrl = new FormControl('', [Validators.required, Validators.minLength(5)
     .subscribe(value => {
       console.log(value);
     });
+
     this.passwordCtrl.valueChanges
     .pipe(
       debounceTime(600)
@@ -43,9 +44,6 @@ passwordCtrl = new FormControl('', [Validators.required, Validators.minLength(5)
     console.log(this.passwordCtrl.value);
   }
 
-
-
-
   loginUser():void{
     const valueEmail = this.emailCtrl.value
     const valuePassword = this.passwordCtrl.value
@@ -53,5 +51,7 @@ passwordCtrl = new FormControl('', [Validators.required, Validators.minLength(5)
     res=>console.log(res)
     );
   }
+
+  
 
 }

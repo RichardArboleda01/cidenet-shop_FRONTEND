@@ -2,14 +2,14 @@
 /* :: 1.0 Import Web Fonts */
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Ubuntu:300,400,500,700");
 /* :: 2.0 Import All CSS */
-@import url(../css/bootstrap.min.css);
-@import url(../css/classy-nav.min.css);
-@import url(../css/owl.carousel.css);
-@import url(../css/animate.css);
-@import url(../css/magnific-popup.css);
-@import url(../css/jquery-ui.min.css);
-@import url(../css/nice-select.css);
-@import url(../css/font-awesome.min.css);
+@import url(bootstrap.min.css);
+@import url(classy-nav.min.css);
+@import url(owl.carousel.css);
+@import url(animate.css);
+@import url(magnific-popup.css);
+@import url(jquery-ui.min.css);
+@import url(nice-select.css);
+@import url(font-awesome.min.css);
 /* :: 3.0 Common/Base CSS */
 * {
   margin: 0;
@@ -164,7 +164,9 @@ img {
 .bg-img {
   background-position: center center;
   background-size: cover;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat; 
+  margin-top: 3%;
+}
 
 .bg-white {
   background-color: #ffffff !important; }
@@ -205,7 +207,7 @@ img {
 
 /* ScrollUp */
 #scrollUp {
-  background-color: #ff084e;
+  background-color: #0315ff;
   border-radius: 0;
   bottom: 60px;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
@@ -311,7 +313,7 @@ img {
     .header_area .search-area form input {
       border: none;
       background-color: #ffffff;
-      width: 200px;
+      width: 250px;
       height: 85px;
       padding: 0 15px 0 60px;
       color: #787878;
@@ -900,34 +902,6 @@ img {
       margin-left: 0;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0; }
-
-/* :: 9.0 Brands Area CSS */
-.brands-area {
-  position: relative;
-  z-index: 1;
-  background-color: #f5f7f9;
-  padding: 100px 5%; }
-  @media only screen and (max-width: 767px) {
-    .brands-area {
-      -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-      padding: 100px 5% 70px; } }
-  @media only screen and (max-width: 767px) {
-    .brands-area .single-brands-logo {
-      -webkit-box-flex: 0;
-      -ms-flex: 0 0 33.33333%;
-      flex: 0 0 33.33333%;
-      width: 33.33333%;
-      max-width: 33.33333%; } }
-  .brands-area .single-brands-logo img {
-    max-width: 120px; }
-    @media only screen and (min-width: 768px) and (max-width: 991px) {
-      .brands-area .single-brands-logo img {
-        max-width: 90px; } }
-    @media only screen and (max-width: 767px) {
-      .brands-area .single-brands-logo img {
-        max-width: 80px;
-        margin-bottom: 30px; } }
 
 /* :: 10.0 Single Product Details Area CSS */
 .single_product_details_area {

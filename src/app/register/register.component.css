@@ -4,8 +4,7 @@
     padding: 20px 3% 20px;
     opacity: 0.9;
     border-radius: 20px;
-    width: 1000px;
-    zoom: 95%;
+    width: 70%;
 
 }
 .register-left{
@@ -109,11 +108,15 @@
     margin-bottom: -16%;
     color: #495057;
     font-weight: bold;
+    font-size: 180%;
 }
 .t-and-c {
     margin-top: 10%;
     font-weight: normal;
     zoom: 110%;
+}
+.label{
+    font-size: small;
 }
 
 

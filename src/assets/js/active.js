@@ -1,6 +1,6 @@
 (function ($) {
     'use strict';
-
+    setTimeout(function(){ 
     var $window = $(window);
 
     // :: Nav Active Code
@@ -147,5 +147,5 @@
     $("a[href='#']").on('click', function ($) {
         $.preventDefault();
     });
-
+    }, 500);
 })(jQuery);
