@@ -3,6 +3,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
+<form [formGroup]="form" novalidate>
 <div class="container login">
     <div class="row">
         <div class="col-md-3 login-left">
@@ -18,27 +19,61 @@
                     <h3 class="login-heading">Iniciar Sesión</h3>
                     <div class="row login-form">
                         <div class="col-md-10">
-                            <div class="form-group">
+                            <div class="from-control">
                                 <label class="label">Email</label>
-                                <input type="email" class="form-control" [formControl]="emailCtrl"/>
-                                    <p *ngIf="emailCtrl.errors && emailCtrl.dirty">
-                                    <small *ngIf="emailCtrl.hasError('required')">Ingresa un email</small>
-                                    <small *ngIf="emailCtrl.hasError('email')">El email no es valido</small>
-                                    </p>
+                                <div class="control has-icons-left has-icons-right">
+                                    <input type="email" class="input" [class.is-success]="validForm('email')"
+                                    [class.is-danger]="invalidForm('email')" formControlName="email"/>
+                                        <div class="form-error"
+                                        *ngIf="formGet('email')!.errors && formGet('email')!.touched">
+                                        <p *ngIf="formGet('email')!.hasError('required')" class="help is-danger">
+                                            Introduce un email
+                                        </p>
+                                        <p *ngIf="formGet('email')!.hasError('email')" class="help is-danger">
+                                            El email que ingresaste no es valido
+                                        </p>
+                                        </div>
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                        <span *ngIf="validForm('email')" class="icon is-small is-right">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span *ngIf="invalidForm('email')" class="icon is-small is-right">
+                                            <i class="fas fa-times"></i>
+                                        </span>
+                                </div>  
                             </div>
                         </div>
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label class="label">Contraseña</label>
-                                <input type="password" class="form-control" [formControl]="passwordCtrl" />
-                                <div>
-                                    <p *ngIf="emailCtrl.errors && emailCtrl.dirty">
-                                    <small *ngIf="emailCtrl.hasError('required')">Ingresa una contraseña</small>
-                                    <small *ngIf="emailCtrl.hasError('min')">la contraseña debe ser de minimo 5 o mas dígitos.</small>
-                                    </p>
+                                <div class="control has-icons-left has-icons-right">
+                                    <input type="password" class="input" [class.is-success]="validForm('password')"
+                                        [class.is-danger]="invalidForm('password')" formControlName="password" />
+                                    <div class="form-error"
+                                        *ngIf="formGet('password')!.errors && formGet('password')!.touched">
+                                        <p *ngIf="formGet('password')!.hasError('required')" class="help is-danger">
+                                            Introduce una contraseña
+                                        </p>
+                                        <p *ngIf="formGet('password')!.hasError('minlength')" class="help is-danger">
+                                            La contraseña debe ser de mínimo 5 o mas dígitos
+                                        </p>
+                                    </div>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                    <span *ngIf="validForm('password')" class="icon is-small is-right">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <span *ngIf="invalidForm('password')" class="icon is-small is-right">
+                                        <i class="fas fa-times"></i>
+                                    </span>
                                 </div>
+                                <p *ngIf="validForm('password')" class="help is-success"></p>
+                                <p *ngIf="invalidForm('password')" class="help is-danger"></p>
                             </div>
-                            <input type="submit" class="btnlogin" value="Continuar" (click)='loginUser()' />
+                            <button type="submit" class="btnlogin" (click)='loginUser()'>Continuar</button>
                         </div>
                     </div>
                 </div>
@@ -46,6 +81,7 @@
         </div>
     </div>
 </div>
+</form>
 <script lang="ts" src="../user.ts"></script>
 <script lang="ts" src="./loginUser.component.ts"></script>
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>

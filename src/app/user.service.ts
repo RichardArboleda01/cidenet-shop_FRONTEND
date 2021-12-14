@@ -17,7 +17,7 @@ export class UserService {
     return this.http.post<String>(this.url+'/create', userRegister);
   }
 
-  get(email:String, password:String):Observable<User>{
+  get(email:any, password:any):Observable<User>{
     return this.http.get<User>(this.url+`/login?email=${email}&password=${password}`)
     .pipe(map(resp => resp),
         catchError(this.error)

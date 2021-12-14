@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -10,48 +10,50 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./loginUser.component.css']
 })
 export class LoginComponent implements OnInit {
-
-emailCtrl = new FormControl ('', [Validators.required, Validators.email]);
-passwordCtrl = new FormControl('', [Validators.required, Validators.minLength(5)]);
+form!: FormGroup;
 
   constructor(private userService:UserService, private router:Router) {
-    this.emailCtrl.valueChanges
-    .pipe(
-      debounceTime(600)
-    )
-    .subscribe(value => {
-      console.log(value);
-    });
-
-    this.passwordCtrl.valueChanges
-    .pipe(
-      debounceTime(600)
-    )
-    .subscribe(value => {
-      console.log(value);
-    });
+    this.buildForm();
    }
 
   ngOnInit(): void {
   }
-  getEmail(event:any) {
-    event.preventDefault();
-    console.log(this.emailCtrl.value);
-  }
 
-  getPassword(event:any) {
-    event.preventDefault();
-    console.log(this.passwordCtrl.value);
-  }
+  private buildForm() {
+  this.form = new FormGroup({
+    email: new FormControl ('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+  });
+
+this.form.valueChanges
+.pipe(
+  debounceTime(1000)
+)}
+
+public formGet(param:any) {
+  return this.form.get(param);
+}
+
+public validForm(param:any) {
+  return this.formGet(param)!.touched && this.formGet(param)!.valid;
+}
+
+public invalidForm(param:any) {
+  return this.formGet(param)!.touched && this.formGet(param)!.invalid;
+}
 
   loginUser():void{
-    const valueEmail = this.emailCtrl.value
-    const valuePassword = this.passwordCtrl.value
+    const valueEmail = this.formGet('email')
+    const valuePassword = this.formGet('password')
+    if(this.validForm('email') && this.validForm('password')) {
+      /*si email-password valid y el email existe en la db, entonces enviar http 200, que lo lleve a home, con el token y mostrar mensaje bienvenido */
     this.userService.get(valueEmail, valuePassword).subscribe(
-    res=>console.log(res)
+    res=>console.log(res)    
     );
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
 
-  
 
 }

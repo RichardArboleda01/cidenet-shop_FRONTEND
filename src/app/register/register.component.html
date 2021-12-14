@@ -39,7 +39,7 @@
                                             </p>
                                         </div>
                                         <span class="icon is-small is-left">
-                                            <i class="fas fa-at"></i>
+                                            <i class="fas fa-arrow-right"></i>
                                         </span>
                                         <span *ngIf="validForm('firstName')" class="icon is-small is-right">
                                             <i class="fas fa-check"></i>
@@ -66,7 +66,7 @@
                                             </p>
                                         </div>
                                         <span class="icon is-small is-left">
-                                            <i class="fas fa-at"></i>
+                                            <i class="fas fa-arrow-right"></i>
                                         </span>
                                         <span *ngIf="validForm('lastName')" class="icon is-small is-right">
                                             <i class="fas fa-check"></i>
@@ -120,9 +120,12 @@
                                             <p *ngIf="formGet('idCard')!.hasError('min')" class="help is-danger">
                                                 Debe contener 7 o más dígitos.
                                             </p>
+                                            <p *ngIf="formGet('idCard')!.hasError('pattern')" class="help is-danger">
+                                                El ID ingresado debe contener solo numeros
+                                            </p>
                                         </div>
                                         <span class="icon is-small is-left">
-                                            <i class="fas fa-at"></i>
+                                            <i class="fas fa-arrow-right"></i>
                                         </span>
                                         <span *ngIf="validForm('idCard')" class="icon is-small is-right">
                                             <i class="fas fa-check"></i>
@@ -150,7 +153,7 @@
                                             </p>
                                         </div>
                                         <span class="icon is-small is-left">
-                                            <i class="fas fa-at"></i>
+                                            <i class="fas fa-envelope"></i>
                                         </span>
                                         <span *ngIf="validForm('email')" class="icon is-small is-right">
                                             <i class="fas fa-check"></i>
@@ -172,9 +175,13 @@
                                             <p *ngIf="formGet('password')!.hasError('required')" class="help is-danger">
                                                 Introduce una contraseña
                                             </p>
-                                            <p *ngIf="formGet('password')!.hasError('minLength')" class="help is-danger">
+                                            <p *ngIf="formGet('password')!.hasError('minlength')" class="help is-danger">
                                                 La contraseña debe ser de mínimo 5 o mas dígitos
                                             </p>
+                                            <p *ngIf="formGet('password')!.hasError('validPass')"
+                                            class="help is-danger">
+                                            Las contraseñas deben ser iguales
+                                        </p>
                                         </div>
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-lock"></i>
@@ -202,6 +209,10 @@
                                                 class="help is-danger">
                                                 Confirma tu contraseña
                                             </p>
+                                            <p *ngIf="formGet('confirmPass')!.hasError('validPass')"
+                                                class="help is-danger">
+                                                Las contraseñas deben ser iguales
+                                            </p>
                                         </div>
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-lock"></i>
@@ -216,7 +227,7 @@
                                     <p *ngIf="validForm('confirmPass')" class="help is-success"></p>
                                     <p *ngIf="invalidForm('confirmPass')" class="help is-danger"></p>
                                 </div>
-                                <input type="submit" class="btnRegister" value="Continuar" (click)='registerUser()'/>
+                                <button type="submit" class="btnRegister" (click)='registerUser()'>Continuar</button>
                             </div>
                             <div class="t-and-c">
                                 <p class="p-checkbox">

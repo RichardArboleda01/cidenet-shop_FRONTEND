@@ -14,7 +14,7 @@ import { BodyComponent } from './home/body/body.component';
 import { AreaStartComponent } from './home/body/area-start/area-start.component';
 import { AreaWelcomeComponent } from './home/body/area-welcome/area-welcome.component';
 import { PopularProdComponent } from './home/body/popular-prod/popular-prod.component';
-import { CartSlideComponent } from './cart-slide/cart-slide.component';
+import { CartSlideComponent } from './home/cart-slide/cart-slide.component';
 
 
 const routes:Routes=[

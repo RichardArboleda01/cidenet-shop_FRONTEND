@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, ValidationErrors, ValidatorFn, AbstractControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { MyValidation } from './myvalidation';
 
 
 @Component({
@@ -14,6 +15,8 @@ import { debounceTime } from 'rxjs/operators';
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
   user: User = new User;
+  prueba: any;
+  
 
   constructor(private userService: UserService, private router: Router,) {
     this.buildForm();
@@ -26,19 +29,21 @@ export class RegisterComponent implements OnInit {
       firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       idCardType: new FormControl('', [Validators.required]),
-      idCard: new FormControl('', [Validators.required, Validators.min(1000000), Validators.max(99999999999999),]),
+      idCard: new FormControl('', [Validators.required, Validators.min(1000000), Validators.max(99999999999999), Validators.pattern('[0-9]*')]),
       email: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/)]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      confirmPass: new FormControl('', [Validators.required]),
+      confirmPass: new FormControl('', [Validators.required, MyValidation.validPass(this.prueba)]), 
     });
 
-    this.form.valueChanges
+    this.form.get('password')?.valueChanges
     .pipe(
-      debounceTime(500)
+      debounceTime(100)
     )
     .subscribe(value => {
-      console.log(value);
-    });
+      this.prueba = value
+    }
+
+    );
   }
 
   public formGet(param:any) {
@@ -56,13 +61,11 @@ export class RegisterComponent implements OnInit {
   registerUser(): void {
     const value = this.form.value
     if (this.form.valid) {
-      if (value.password == value.confirmPass && this.form.valid) {
         this.userService.create(value).subscribe(
-          res => this.router.navigate(['/home'])) 
-      } else {
-        console.log("Las contraseñas no coinciden.")
-      }
+          res => this.router.navigate(['./login'])) 
     } else {
+      console.log('funciona');
+      
       this.form.markAllAsTouched();
     }
 
