@@ -15,14 +15,20 @@ import { AreaStartComponent } from './home/body/area-start/area-start.component'
 import { AreaWelcomeComponent } from './home/body/area-welcome/area-welcome.component';
 import { PopularProdComponent } from './home/body/popular-prod/popular-prod.component';
 import { CartSlideComponent } from './home/cart-slide/cart-slide.component';
+import { ShopComponent } from './shop/shop.component';
+import { BodyShopComponent } from './shop/body-shop/body-shop.component';
+import { AllProductsComponent } from './shop/body-shop/all-products/all-products.component';
+
 
 
 const routes:Routes=[
   { path: '', component: HomeComponent, pathMatch: 'full'},
+  { path: 'home', component: HomeComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent},
-  { path: 'home', component: HomeComponent},
   { path: 'cart', component: CartSlideComponent},
+  { path: 'shop', component: ShopComponent },
+
 ]
 
 @NgModule({
@@ -38,6 +44,9 @@ const routes:Routes=[
     AreaWelcomeComponent,
     PopularProdComponent,
     CartSlideComponent,
+    ShopComponent,
+    BodyShopComponent,
+    AllProductsComponent,
   ],
   imports: [
     BrowserModule,

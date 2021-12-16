@@ -1,16 +1,8 @@
-import { AbstractControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
-export class MyValidation {
 
-    static validPass(password: any) {
-        console.log(password);
-        
-        return (control: AbstractControl) => {
-          const value = control.value;
-          if (value != password) {
-            return {validPass: true};
-          }
-          return null;
-        };
-      }
+    export function passwordMatchValidator(form: FormGroup) {
+        return form.get('password')!.value === form.get('confirmPass')!.value
+            ? null : { 'mismatch': true };
     }
+   

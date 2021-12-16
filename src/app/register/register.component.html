@@ -9,12 +9,12 @@
     <div class="container register">
         <div class="row">
             <div class="col-md-3 register-left">
-                <img src="https://www.cidenet.com.co/wp-content/uploads/2021/04/cidenet-software-a-la-medida-medellin.png"
-                    alt="" />
+                <a routerLink="/home"><img src="https://www.cidenet.com.co/wp-content/uploads/2021/04/cidenet-software-a-la-medida-medellin.png"
+                    alt="" /></a>
                 <h4>¡Bienvenido a Cidenet Shop!</h4>
                 <p><b>Comienza a ver nuestro catálogo.</b><br><b>¡Te encantará!</b></p>
                 <p><b>¿Ya estas registrado? Presiona el boton <br>"Iniciar Sesión"</b></p>
-                <input [routerLink]='["/login"]' type="submit" name="" value="Iniciar Sesión" /><br />
+                <input routerLink="/login" type="submit" name="" value="Iniciar Sesión" /><br />
             </div>
             <div class="col-md-9 register-right">
                 <div class="tab-content" id="myTabContent">
@@ -178,8 +178,7 @@
                                             <p *ngIf="formGet('password')!.hasError('minlength')" class="help is-danger">
                                                 La contraseña debe ser de mínimo 5 o mas dígitos
                                             </p>
-                                            <p *ngIf="formGet('password')!.hasError('validPass')"
-                                            class="help is-danger">
+                                            <p *ngIf="formGet('password')!.hasError('MustMatch')" class="help is-danger">
                                             Las contraseñas deben ser iguales
                                         </p>
                                         </div>

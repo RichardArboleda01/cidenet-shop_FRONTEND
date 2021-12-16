@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
-import { FormGroup, FormBuilder, FormControl, Validators, ValidationErrors, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
-import { MyValidation } from './myvalidation';
+import {passwordMatchValidator } from './myvalidation';
+
 
 
 @Component({
@@ -15,14 +16,12 @@ import { MyValidation } from './myvalidation';
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
   user: User = new User;
-  prueba: any;
-  
+
 
   constructor(private userService: UserService, private router: Router,) {
     this.buildForm();
   }
   ngOnInit(): void {
-    
   }
   private buildForm() {
     this.form = new FormGroup({
@@ -32,18 +31,13 @@ export class RegisterComponent implements OnInit {
       idCard: new FormControl('', [Validators.required, Validators.min(1000000), Validators.max(99999999999999), Validators.pattern('[0-9]*')]),
       email: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/)]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      confirmPass: new FormControl('', [Validators.required, MyValidation.validPass(this.prueba)]), 
-    });
+      confirmPass: new FormControl('', [Validators.required])
+    },);
 
-    this.form.get('password')?.valueChanges
+    this.form.valueChanges
     .pipe(
-      debounceTime(100)
-    )
-    .subscribe(value => {
-      this.prueba = value
-    }
-
-    );
+      debounceTime(1000)
+    ); 
   }
 
   public formGet(param:any) {
@@ -64,8 +58,6 @@ export class RegisterComponent implements OnInit {
         this.userService.create(value).subscribe(
           res => this.router.navigate(['./login'])) 
     } else {
-      console.log('funciona');
-      
       this.form.markAllAsTouched();
     }
 
