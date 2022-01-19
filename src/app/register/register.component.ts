@@ -14,31 +14,33 @@ import {passwordMatchValidator } from './myvalidation';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  form!: FormGroup;
+  public form!: FormGroup;
   user: User = new User;
 
 
-  constructor(private userService: UserService, private router: Router,) {
-    this.buildForm();
+  constructor(private userService: UserService, private router: Router, private formBuilder: FormBuilder) { 
   }
-  ngOnInit(): void {
-  }
-  private buildForm() {
-    this.form = new FormGroup({
-      firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
-      lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
-      idCardType: new FormControl('', [Validators.required]),
-      idCard: new FormControl('', [Validators.required, Validators.min(1000000), Validators.max(99999999999999), Validators.pattern('[0-9]*')]),
-      email: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      confirmPass: new FormControl('', [Validators.required])
-    },);
 
-    this.form.valueChanges
-    .pipe(
-      debounceTime(1000)
-    ); 
+  ngOnInit(): void {
+      this.form = this.formBuilder.group({
+        firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+        lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+        idCardType: ['', []],
+        idCard: ['', [Validators.required, Validators.min(1000000), Validators.max(99999999999999), Validators.pattern('[0-9]*')]],
+        email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/)]],
+        password: ['', [Validators.required, Validators.minLength(5)]],
+        confirmPass: ['', [Validators.required]]
+      });
+  
+      this.form.valueChanges
+      .pipe(
+        debounceTime(1000)
+      )
+      .subscribe(value => {
+        console.log(value);
+      }); 
   }
+
 
   public formGet(param:any) {
     return this.form.get(param);
@@ -56,7 +58,7 @@ export class RegisterComponent implements OnInit {
     const value = this.form.value
     if (this.form.valid) {
         this.userService.create(value).subscribe(
-          res => this.router.navigate(['./login'])) 
+          res => this.router.navigate(['/login'])) 
     } else {
       this.form.markAllAsTouched();
     }

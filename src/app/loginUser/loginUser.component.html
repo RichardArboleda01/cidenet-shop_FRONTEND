@@ -3,7 +3,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<form [formGroup]="form" novalidate>
+<form (ngSubmit)="loginUser()" [formGroup]="form" novalidate>
 <div class="container login">
     <div class="row">
         <div class="col-md-3 login-left">
@@ -73,7 +73,7 @@
                                 <p *ngIf="validForm('password')" class="help is-success"></p>
                                 <p *ngIf="invalidForm('password')" class="help is-danger"></p>
                             </div>
-                            <button type="submit" class="btnlogin" (click)='loginUser()'>Continuar</button>
+                            <button type="submit" class="btnlogin">Continuar</button>
                         </div>
                     </div>
                 </div>

@@ -5,11 +5,11 @@
 
 <!------ Include the above in your HEAD tag ---------->
 
-<form [formGroup]="form" novalidate>
+<form (ngSubmit)="registerUser()" [formGroup]="form" novalidate>
     <div class="container register">
         <div class="row">
             <div class="col-md-3 register-left">
-                <a routerLink="/home"><img src="https://www.cidenet.com.co/wp-content/uploads/2021/04/cidenet-software-a-la-medida-medellin.png"
+                <a [routerLink]="['/home']"><img src="https://www.cidenet.com.co/wp-content/uploads/2021/04/cidenet-software-a-la-medida-medellin.png"
                     alt="" /></a>
                 <h4>¡Bienvenido a Cidenet Shop!</h4>
                 <p><b>Comienza a ver nuestro catálogo.</b><br><b>¡Te encantará!</b></p>
@@ -84,9 +84,9 @@
                                         <select class="input" [class.is-success]="validForm('idCardType')"
                                             [class.is-danger]="invalidForm('idCardType')" value=""
                                             formControlName="idCardType">
-                                            <option>Tarjeta de identidad</option>
-                                            <option>Cedula</option>
-                                            <option>Pasaporte</option>
+                                            <option value="1">Tarjeta de identidad</option>
+                                            <option value="2">Cedula</option>
+                                            <option value="3">Pasaporte</option>
                                         </select>
                                         <div class="form-error"
                                             *ngIf="formGet('idCardType')!.errors && formGet('idCardType')!.touched">
@@ -149,7 +149,7 @@
                                                 Introduce tu email
                                             </p>
                                             <p *ngIf="formGet('email')!.hasError('pattern')" class="help is-danger">
-                                                El email que ingresaste no es válido
+                                                Ingresa un email valido (ejemplo@cidenet.com)
                                             </p>
                                         </div>
                                         <span class="icon is-small is-left">
@@ -226,7 +226,7 @@
                                     <p *ngIf="validForm('confirmPass')" class="help is-success"></p>
                                     <p *ngIf="invalidForm('confirmPass')" class="help is-danger"></p>
                                 </div>
-                                <button type="submit" class="btnRegister" (click)='registerUser()'>Continuar</button>
+                                <button type="submit" class="btnRegister">Continuar</button>
                             </div>
                             <div class="t-and-c">
                                 <p class="p-checkbox">

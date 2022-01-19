@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'; 
@@ -18,6 +19,11 @@ import { CartSlideComponent } from './home/cart-slide/cart-slide.component';
 import { ShopComponent } from './shop/shop.component';
 import { BodyShopComponent } from './shop/body-shop/body-shop.component';
 import { AllProductsComponent } from './shop/body-shop/all-products/all-products.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { BodyProductComponent } from './product-details/body-product/body-product.component';
+import { CreateComponent } from './crudProduct/create/create.component';
+import { GetByColorComponent } from './crudProduct/get-by-color/get-by-color.component';
+
 
 
 
@@ -28,6 +34,8 @@ const routes:Routes=[
   { path: 'login', component: LoginComponent},
   { path: 'cart', component: CartSlideComponent},
   { path: 'shop', component: ShopComponent },
+  { path: 'productDetails', component: ProductDetailsComponent },
+  { path: 'create', component: CreateComponent }
 
 ]
 
@@ -47,6 +55,11 @@ const routes:Routes=[
     ShopComponent,
     BodyShopComponent,
     AllProductsComponent,
+    ProductDetailsComponent,
+    BodyProductComponent,
+    CreateComponent,
+    GetByColorComponent
+
   ],
   imports: [
     BrowserModule,
