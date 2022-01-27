@@ -1,9 +1,11 @@
+import { Product } from 'src/app/product';
 import { CustomResponse } from './../../custom-response';
 import { debounceTime } from 'rxjs/operators';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductService } from './../../product.service';
 import { Component, OnInit } from '@angular/core';
+import { ProductColor } from './../../product';
 
 @Component({
   selector: 'app-create',
@@ -13,18 +15,20 @@ import { Component, OnInit } from '@angular/core';
 export class CreateComponent implements OnInit {
 
   public form!: FormGroup;
+  public colors: ProductColor[] = [];
 
   constructor(private productService: ProductService, private router: Router, private formBuilder: FormBuilder) { 
   }
 
   ngOnInit(): void {
+    this.getAllColors();
     this.form = this.formBuilder.group({
       category: [''],
       name: [''],
       price: [''],
       description: [''],
       picture: [''],
-      idColor: [''],
+      idColor: new FormArray([]),
       brand: [''],
       size: [''],
       stock: [''],
@@ -36,6 +40,8 @@ export class CreateComponent implements OnInit {
     )
     .subscribe(value => {
       console.log(value);
+      console.log(this.colors);
+      
     }); 
 }
 
@@ -61,5 +67,23 @@ createProduct(): void {
 
 }
 
+getAllColors(){
+  this.productService.getAllColors().subscribe((res:any)=>{
+    this.colors = res;
+    console.log(this.colors);
+    
+  })
+}
 
+ // Choose city using select dropdown
+ changeColor() {
+  
+  console.log('cambio color: ');
+}
+
+// Getter method to access formcontrols
+get getIdColor() {
+  return this.
+  form.get('idColor');
+}
 }

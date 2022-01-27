@@ -11,6 +11,7 @@ import { Product } from 'src/app/product';
 })
 export class AllProductsComponent implements OnInit {
   public products: Product[] = [];
+  public productCount: number = 0;
 
   constructor(private productService: ProductService, private router: Router, private formBuilder: FormBuilder) { 
   }
@@ -24,6 +25,7 @@ export class AllProductsComponent implements OnInit {
   getAllProduct(){
     this.productService.getAll().subscribe((res:CustomResponse)=>{
       this.products=res.object_response;
+      this.productCount = res.total_object;
       console.log(res);
       
     })
@@ -33,6 +35,17 @@ export class AllProductsComponent implements OnInit {
   getByColor(idColor:number){
     this.productService.getByColor(idColor).subscribe((res:CustomResponse)=>{
       this.products=res.object_response;
+      this.productCount = res.total_object;
+      console.log(res);
+      
+    })
+  
+  }
+
+  getBy(idColor:number){
+    this.productService.getByColor(idColor).subscribe((res:CustomResponse)=>{
+      this.products=res.object_response;
+      this.productCount = res.total_object;
       console.log(res);
       
     })

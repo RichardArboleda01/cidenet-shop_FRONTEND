@@ -1,14 +1,24 @@
-export interface Product {
+export class Product {
 
-    idProduct: number;
-    category: String;
-    name: String;
-    price:  number;
-    description: String;
+    idProduct: number = 0;
+    category: String = "";
+    name: String = "";
+    price:  number = 0;
+    description: String = "";
     picture: any;
-    idColor: number;
-    brand: String;
-    size: String;
-    stock: number; 
+    idColor: ProductColor[] = [];
+    brand: String = "";
+    size: String = "";
+    stock: number = 0; 
 
 }
+
+export class ProductColor {
+
+    idColor: number = 0;
+    nameColor: String = "";
+  
+}
+
+
+

@@ -22,10 +22,6 @@ import { AllProductsComponent } from './shop/body-shop/all-products/all-products
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { BodyProductComponent } from './product-details/body-product/body-product.component';
 import { CreateComponent } from './crudProduct/create/create.component';
-import { GetByColorComponent } from './crudProduct/get-by-color/get-by-color.component';
-
-
-
 
 const routes:Routes=[
   { path: '', component: HomeComponent, pathMatch: 'full'},
@@ -34,7 +30,7 @@ const routes:Routes=[
   { path: 'login', component: LoginComponent},
   { path: 'cart', component: CartSlideComponent},
   { path: 'shop', component: ShopComponent },
-  { path: 'productDetails', component: ProductDetailsComponent },
+  { path: 'productDetails/:idProduct', component: ProductDetailsComponent },
   { path: 'create', component: CreateComponent }
 
 ]
@@ -57,8 +53,7 @@ const routes:Routes=[
     AllProductsComponent,
     ProductDetailsComponent,
     BodyProductComponent,
-    CreateComponent,
-    GetByColorComponent
+    CreateComponent
 
   ],
   imports: [

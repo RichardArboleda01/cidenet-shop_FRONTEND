@@ -1,6 +1,6 @@
 /* [Master Stylesheet v-1.0.0] */
 /* :: 1.0 Import Web Fonts */
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Ubuntu:300,400,500,700");
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Ubuntu:300,400,500,700');
 /* :: 2.0 Import All CSS */
 @import url(bootstrap.min.css);
 @import url(classy-nav.min.css);
@@ -46,7 +46,7 @@ a {
   transition: all 500ms ease 0s;
   text-decoration: none;
   outline: 0 solid transparent;
-  color: #fbf5f5;
+  color: #000000;
   font-weight: 600;
   font-size: 12px; }
   a:hover, a:focus {
@@ -65,7 +65,8 @@ ol {
   ol li {
     list-style: none; }
 
-img {
+.img {
+  margin-top: -6%;
   height: auto;
   max-width: 100%; }
 
@@ -993,7 +994,8 @@ img {
         text-decoration: line-through;
         margin-right: 15px; }
     .single_product_details_area .single_product_desc .product-desc {
-      font-size: 16px; }
+      font-size: 17px;
+      font-family: "Ubuntu", sans-serif; }
       @media only screen and (min-width: 768px) and (max-width: 991px) {
         .single_product_details_area .single_product_desc .product-desc {
           font-size: 14px; } }
@@ -1058,7 +1060,7 @@ img {
       width: 50%; }
       .footer_area .single_widget_area .footer_widget_menu li a {
         display: block;
-        font-size: 12px;
+        font-size: 14px;
         color: rgba(255, 255, 255, 0.6);
         display: block;
         font-weight: 400;
@@ -1257,16 +1259,18 @@ img {
   .product-topbar .total-products p {
     margin-bottom: 0;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
     color: #000000;
     text-transform: uppercase;
     letter-spacing: 0.75px; }
     .product-topbar .total-products p span {
-      color: #0315ff; }
+      color: #0315ff;
+      font-weight: 800;
+      font-size: 12px; }
   .product-topbar .product-sorting p {
     margin-bottom: 0;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
     color: #000000;
     text-transform: uppercase;
     letter-spacing: 0.75px;

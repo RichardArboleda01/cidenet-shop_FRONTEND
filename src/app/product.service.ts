@@ -1,5 +1,5 @@
 import { CustomResponse } from './custom-response';
-import { Product } from './product';
+import { Product, ProductColor } from './product';
 import { Injectable } from '@angular/core';
 import{HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -26,8 +26,22 @@ export class ProductService {
       );
   }
 
+  getAllColors(){
+    return this.http.get<ProductColor>("http://localhost:8080/api/color/getAll")
+    .pipe(map(resp => resp),
+        catchError(this.error)
+      );
+  }
+
   getByColor(idColor: number):Observable<CustomResponse>{
     return this.http.get<CustomResponse>(this.url+`/getByColor?idColor=${idColor}`)
+    .pipe(map(resp => resp),
+        catchError(this.error)
+      );
+  }
+
+  getById(idProduct: number):Observable<CustomResponse>{
+    return this.http.get<CustomResponse>(this.url+`/getProductById/${idProduct}`)
     .pipe(map(resp => resp),
         catchError(this.error)
       );

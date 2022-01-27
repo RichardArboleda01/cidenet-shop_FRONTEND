@@ -147,12 +147,14 @@ img {
     display: block;
     height: 35px;
     font-size: 14px;
+    font-family: "Ubuntu", sans-serif;
     line-height: 34px
 }
 
 .classynav ul li .megamenu li a {
     padding: 0 12px
 }
+
 
 @font-face {
     font-family: icomoon;
@@ -268,6 +270,7 @@ img {
     top: 100%;
     background-color: #fff;
     z-index: 200;
+    font-family: "Ubuntu", sans-serif;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .15);
     -webkit-transition-duration: .3s;
     transition-duration: .3s
@@ -286,11 +289,11 @@ img {
 }
 
 .classynav ul li .megamenu .single-mega.cn-col-4 {
-    width: 25%;
-    display: inline-block;
-    float: left;
+    width: 30%;
+    display: block;
+    float: right;
     padding: 15px;
-    border-right: 1px solid #f2f4f8
+    border-right: 1px solid #f2f4f8;
 }
 
 .classynav ul li .megamenu .single-mega.cn-col-4:last-of-type {

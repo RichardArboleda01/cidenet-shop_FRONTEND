@@ -54,10 +54,12 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="label">Color</label>
-                  <div class="control has-icons-left has-icons-right">
-                    <input type="number" class="input" formControlName="idColor" />
-                  </div>
+                  <div class="control select has-icons-left has-icons-right">
+                      <label class="label">Color</label>
+                      <ng-container formGroupName="idColor">
+                      <input type="text" class="input" formControlName="idColor" />
+                    </ng-container>
+                    </div>
                 </div>
                 <div class="form-group">
                   <label class="label">Marca</label>
@@ -78,7 +80,7 @@
                   </div>
                 </div>
 
-
+                <p>Form value: {{ form.value | json }}</p> 
                 <button type="submit" class="btnRegister">Continuar</button>
               </div>
               <div class="t-and-c">

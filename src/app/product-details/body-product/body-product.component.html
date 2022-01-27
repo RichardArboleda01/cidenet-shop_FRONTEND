@@ -11,36 +11,31 @@
 
     <!-- Single Product Description -->
     <div class="single_product_desc clearfix">
-        <span>mango</span>
+        <span >{{getProduct.brand}}</span>
         <a href="cart.html">
-            <h2>Midi Dress Black</h2>
+            <h2>{{getProduct.name}}</h2>
         </a>
-        <p class="product-price">$49.00</p>
-        <p class="product-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Illo reprehenderit dolorem suscipit reiciendis ipsum at alias, voluptate excepturi possimus non totam? Dignissimos, 
-            accusamus. Sed recusandae quas fugiat, voluptatem quasi labore.</p>
+        <p class="product-price">${{getProduct.price}}</p>
+        <p class="product-desc">{{getProduct.description}}</p>
 
         <!-- Form -->
         <form class="cart-form clearfix" method="post">
             <!-- Select Box -->
             <div class="select-box d-flex mt-50 mb-30">
                 <select name="select" id="productSize" class="mr-5">
-                    <option value="value">Size: XL</option>
-                    <option value="value">Size: X</option>
-                    <option value="value">Size: M</option>
-                    <option value="value">Size: S</option>
+                    <option value="value">{{getProduct.size}}</option>
+                   
                 </select>
-                <select name="select" id="productColor">
-                    <option value="value">Color: Black</option>
-                    <option value="value">Color: White</option>
-                    <option value="value">Color: Red</option>
-                    <option value="value">Color: Purple</option>
+                <select name="select" [value]="idColorTest" (SelectionChange)="idColorTest = $event">
+                    <option *ngFor="let color of getProduct.idColor" [value]="color.idColor" >
+                        {{color.nameColor}}</option>
                 </select>
+                <h1> - {{idColorTest}}</h1>
             </div>
             <!-- Cart & Favourite Box -->
             <div class="cart-fav-box d-flex align-items-center">
                 <!-- Cart -->
-                <button type="submit" name="addtocart" value="5" class="btn essence-btn">Add to cart</button>
+                <button type="submit" name="addtocart" value="5" class="btn essence-btn">Añadir al carrito</button>
                 <!-- Favourite -->
                 <div class="product-favourite ml-4">
                     <a href="#" class="favme fa fa-heart"></a>
