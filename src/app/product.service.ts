@@ -40,6 +40,13 @@ export class ProductService {
       );
   }
 
+  getByCategory(category: String):Observable<CustomResponse>{
+    return this.http.get<CustomResponse>(this.url+`/getByCategory?category=${category}`)
+    .pipe(map(resp => resp),
+        catchError(this.error)
+      );
+  }
+
   getById(idProduct: number):Observable<CustomResponse>{
     return this.http.get<CustomResponse>(this.url+`/getProductById/${idProduct}`)
     .pipe(map(resp => resp),

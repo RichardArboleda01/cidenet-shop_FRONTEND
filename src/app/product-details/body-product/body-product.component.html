@@ -4,8 +4,7 @@
     <div class="single_product_thumb clearfix">
         <div class="product_thumbnail_slides owl-carousel">
             <img src="../../../assets/img/product-img/product-big-1.jpg" alt="">
-            <img src="../../../assets/img/product-img/product-big-2.jpg" alt="">
-            <img src="../../../assets/img/product-img/product-big-3.jpg" alt="">
+
         </div>
     </div>
 
@@ -17,7 +16,6 @@
         </a>
         <p class="product-price">${{getProduct.price}}</p>
         <p class="product-desc">{{getProduct.description}}</p>
-
         <!-- Form -->
         <form class="cart-form clearfix" method="post">
             <!-- Select Box -->
@@ -30,7 +28,6 @@
                     <option *ngFor="let color of getProduct.idColor" [value]="color.idColor" >
                         {{color.nameColor}}</option>
                 </select>
-                <h1> - {{idColorTest}}</h1>
             </div>
             <!-- Cart & Favourite Box -->
             <div class="cart-fav-box d-flex align-items-center">

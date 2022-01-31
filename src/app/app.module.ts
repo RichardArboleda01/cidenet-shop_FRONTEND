@@ -29,6 +29,7 @@ const routes:Routes=[
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent},
   { path: 'cart', component: CartSlideComponent},
+  { path: 'shop/:category', component: ShopComponent },
   { path: 'shop', component: ShopComponent },
   { path: 'productDetails/:idProduct', component: ProductDetailsComponent },
   { path: 'create', component: CreateComponent }

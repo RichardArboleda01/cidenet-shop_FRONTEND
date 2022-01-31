@@ -1,7 +1,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+ <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"> 
 
 <!------ Include the above in your HEAD tag ---------->
 
@@ -50,17 +50,22 @@
                 <div class="form-group">
                   <label class="label">Imagen</label>
                   <div class="control has-icons-left has-icons-right">
-                    <input type="text" class="input" formControlName="picture" />
+                    <input type="file" class="input" formControlName="picture" />
                   </div>
                 </div>
+
                 <div class="form-group">
                   <div class="control select has-icons-left has-icons-right">
                       <label class="label">Color</label>
-                      <ng-container formGroupName="idColor">
-                      <input type="text" class="input" formControlName="idColor" />
-                    </ng-container>
+                      <select  formControlName="idColor">
+                        <option *ngFor="let color of colors" [ngValue]="color.idColor">
+                          {{ color.nameColor}}
+                        </option>
+                      </select>                                     
                     </div>
-                </div>
+                </div>                
+
+                
                 <div class="form-group">
                   <label class="label">Marca</label>
                   <div class="control has-icons-left has-icons-right">

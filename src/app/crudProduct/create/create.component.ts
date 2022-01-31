@@ -1,7 +1,7 @@
 import { Product } from 'src/app/product';
 import { CustomResponse } from './../../custom-response';
 import { debounceTime } from 'rxjs/operators';
-import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductService } from './../../product.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,6 +16,8 @@ export class CreateComponent implements OnInit {
 
   public form!: FormGroup;
   public colors: ProductColor[] = [];
+  public productColor: ProductColor[] = [];
+  public newProduct: Product = new Product;
 
   constructor(private productService: ProductService, private router: Router, private formBuilder: FormBuilder) { 
   }
@@ -28,7 +30,7 @@ export class CreateComponent implements OnInit {
       price: [''],
       description: [''],
       picture: [''],
-      idColor: new FormArray([]),
+      idColor: [''],
       brand: [''],
       size: [''],
       stock: [''],
@@ -41,7 +43,6 @@ export class CreateComponent implements OnInit {
     .subscribe(value => {
       console.log(value);
       console.log(this.colors);
-      
     }); 
 }
 
@@ -60,7 +61,12 @@ public invalidForm(param:any) {
 
 createProduct(): void {
   const value = this.form.value;
-  this.productService.create(value).subscribe((res)=>{
+  this.newProduct = value;
+  this.productColor.push({
+    idColor: value.idColor, nameColor:''
+  })
+  this.newProduct.idColor = this.productColor;
+  this.productService.create(this.newProduct).subscribe((res)=>{
     this.router.navigate(["/shop"])
   })
  
@@ -75,7 +81,7 @@ getAllColors(){
   })
 }
 
- // Choose city using select dropdown
+
  changeColor() {
   
   console.log('cambio color: ');
@@ -86,4 +92,12 @@ get getIdColor() {
   return this.
   form.get('idColor');
 }
+
+changeCity(e : any) {
+  console.log(e)
+  this.form.setValue(e.target.value, {
+    onlySelf: true
+  })
+}
+
 }
