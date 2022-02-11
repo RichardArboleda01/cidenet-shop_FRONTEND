@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../user';
@@ -57,9 +58,16 @@ export class RegisterComponent implements OnInit {
   registerUser(): void {
     const value = this.form.value
     if (this.form.valid) {
-        this.userService.create(value).subscribe(
-          res => this.router.navigate(['/login'])) 
-    } else {
+        this.userService.create(value).subscribe((
+          res) => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Te has registrado con exito',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.router.navigate(['/login'])
+    })} else {
       this.form.markAllAsTouched();
     }
 

@@ -1,3 +1,4 @@
+import { StoreService } from 'src/app/store.service';
 import { CustomResponse } from './../../custom-response';
 import { Product, ProductColor } from 'src/app/product';
 import { FormBuilder } from '@angular/forms';
@@ -14,7 +15,7 @@ export class BodyProductComponent implements OnInit {
   public getProduct: Product = new Product;
   public idColorTest: any = 0;
 
-  constructor(private productService: ProductService, private router: Router, private activatedRoute:ActivatedRoute) { 
+  constructor(private productService: ProductService, private router: Router, private activatedRoute:ActivatedRoute, private store: StoreService) { 
   }
 
   ngOnInit(): void {
@@ -42,6 +43,10 @@ export class BodyProductComponent implements OnInit {
     this.idColorTest = e
     console.log(this.idColorTest)
    
+  }
+
+  addProductToCart() {
+    this.store.addProductToCart(this.getProduct);
   }
  
 

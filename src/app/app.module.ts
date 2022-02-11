@@ -22,6 +22,7 @@ import { AllProductsComponent } from './shop/body-shop/all-products/all-products
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { BodyProductComponent } from './product-details/body-product/body-product.component';
 import { CreateComponent } from './crudProduct/create/create.component';
+import { CreateCartComponent } from './shoppingCart/create-cart/create-cart.component';
 
 const routes:Routes=[
   { path: '', component: HomeComponent, pathMatch: 'full'},
@@ -32,7 +33,8 @@ const routes:Routes=[
   { path: 'shop/:category', component: ShopComponent },
   { path: 'shop', component: ShopComponent },
   { path: 'productDetails/:idProduct', component: ProductDetailsComponent },
-  { path: 'create', component: CreateComponent }
+  { path: 'create', component: CreateComponent },
+  { path: 'home/:idClient', component: HomeComponent},
 
 ]
 
@@ -54,7 +56,8 @@ const routes:Routes=[
     AllProductsComponent,
     ProductDetailsComponent,
     BodyProductComponent,
-    CreateComponent
+    CreateComponent,
+    CreateCartComponent
 
   ],
   imports: [
@@ -62,7 +65,8 @@ const routes:Routes=[
     HttpClientModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

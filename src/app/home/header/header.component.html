@@ -70,7 +70,7 @@
                 <div class="classynav">
                     <ul>
                         <li><a href="#"><img src="../../../assets/img/core-img/user.svg" alt=""></a>
-                            <div class="megamenu">
+                            <div class="megamenu" style="background: transparent;">
                                 <ul class="single-mega cn-col-4">
                                     <li><button class="btn essence-btn" type="button" routerLink="/register">Registrarse</button></li>
                                 </ul>
@@ -85,7 +85,7 @@
             <!-- Cart Area -->
             <div class="cart-area">
                 <a href="#" id="essenceCartBtn"><img src="../../../assets/img/core-img/bag.svg" alt="">
-                    <span>3</span></a>
+                    <span>{{(myCart$ | async)?.length}}</span></a>
             </div>
         </div>
     </div>

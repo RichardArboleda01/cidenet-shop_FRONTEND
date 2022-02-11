@@ -1,3 +1,4 @@
+import { StoreService } from './../../../store.service';
 import { CustomResponse } from './../../../custom-response';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -5,6 +6,7 @@ import { ProductService } from './../../../product.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/product';
 import { throwIfEmpty } from 'rxjs';
+
 
 @Component({
   selector: 'app-all-products',
@@ -14,15 +16,18 @@ export class AllProductsComponent implements OnInit {
   public products: Product[] = [];
   public productCount: number = 0;
 
-  constructor(private productService: ProductService, private router: Router, private formBuilder: FormBuilder, private activatedRoute:ActivatedRoute) { 
+
+  constructor(private productService: ProductService,
+     private router: Router, 
+     private formBuilder: FormBuilder, 
+     private activatedRoute:ActivatedRoute, 
+     private store: StoreService) { 
   }
 
   ngOnInit(): void {
     this.getProductByCategory();
   }
-
-
-
+  
   getAllProduct(){
     this.productService.getAll().subscribe((res:CustomResponse)=>{
       this.products=res.object_response;
@@ -75,4 +80,9 @@ export class AllProductsComponent implements OnInit {
     })
   
   }
+
+  addProductToCart(product: Product) {
+    this.store.addProductToCart(product);
+  }
+
 }

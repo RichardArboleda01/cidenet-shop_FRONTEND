@@ -24,6 +24,13 @@ export class UserService {
       );
   }
 
+  getClientById(idClient: number):Observable<User>{
+    return this.http.get<User>(this.url+`/getClient/${idClient}`)
+    .pipe(map(resp => resp),
+        catchError(this.error)
+      );
+  }
+
 
   // Handle Errors
   error(error: HttpErrorResponse) {

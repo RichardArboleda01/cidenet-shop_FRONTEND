@@ -1,3 +1,5 @@
+import  Swal from 'sweetalert2';
+import { User } from './../user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
@@ -43,17 +45,19 @@ public invalidForm(param:any) {
 }
 
   loginUser():void{
-    const valueEmail = this.formGet('email')
-    const valuePassword = this.formGet('password')
-    if(this.validForm('email') && this.validForm('password')) {
-      /*si email-password valid y el email existe en la db, entonces enviar http 200, que lo lleve a home, con el token y mostrar mensaje bienvenido */
-    this.userService.get(valueEmail, valuePassword).subscribe(
-    res=>console.log(res)    
-    );
-    } else {
-      this.form.markAllAsTouched();
-    }
-  }
+    const valueEmail = this.formGet('email')?.value;
+    const valuePassword = this.formGet('password')?.value;
+    this.userService.get(valueEmail, valuePassword).subscribe((
+      res: User)=>{
+        Swal.fire({
+          icon: 'success',
+          title: 'Bienvenido ' + res.firstName,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      this.router.navigate(['/home/' + res.idCard]);
+      }
+    )} 
 
 
 }
