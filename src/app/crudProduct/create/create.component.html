@@ -50,7 +50,10 @@
                 <div class="form-group">
                   <label class="label">Imagen</label>
                   <div class="control has-icons-left has-icons-right">
-                    <input type="file" class="input" formControlName="picture" />
+                    <input (change)="captureImg($event)" type="text" class="input" formControlName="picture" />
+                  </div>
+                  <div *ngIf="previewImg">
+                    <img width="150px" [src] = "previewImg" alt="">
                   </div>
                 </div>
 

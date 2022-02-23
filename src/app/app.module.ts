@@ -23,7 +23,10 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { BodyProductComponent } from './product-details/body-product/body-product.component';
 import { CreateComponent } from './crudProduct/create/create.component';
 import { CreateCartComponent } from './shoppingCart/create-cart/create-cart.component';
-
+import { ConfirmOrderComponent } from './yourOrder/confirm-order/confirm-order.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GetCartComponent } from './shoppingCart/get-cart/get-cart.component';
+import { ControlAdminComponent } from './panelAdmin/control-admin/control-admin.component'
 const routes:Routes=[
   { path: '', component: HomeComponent, pathMatch: 'full'},
   { path: 'home', component: HomeComponent},
@@ -35,6 +38,8 @@ const routes:Routes=[
   { path: 'productDetails/:idProduct', component: ProductDetailsComponent },
   { path: 'create', component: CreateComponent },
   { path: 'home/:idClient', component: HomeComponent},
+  { path: 'yourOrder/confirmOrder', component: ConfirmOrderComponent},
+  { path: 'panelAdmin/controlAdmin', component: ControlAdminComponent}
 
 ]
 
@@ -57,7 +62,10 @@ const routes:Routes=[
     ProductDetailsComponent,
     BodyProductComponent,
     CreateComponent,
-    CreateCartComponent
+    CreateCartComponent,
+    ConfirmOrderComponent,
+    GetCartComponent,
+    ControlAdminComponent
 
   ],
   imports: [
@@ -66,6 +74,7 @@ const routes:Routes=[
     RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     
   ],
   providers: [],

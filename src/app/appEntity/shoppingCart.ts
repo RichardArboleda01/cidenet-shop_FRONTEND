@@ -1,3 +1,4 @@
+import { User } from './../user';
 import { Product } from 'src/app/product';
 export class ShoppingCart {
 
@@ -7,5 +8,6 @@ export class ShoppingCart {
     delivery: number = 0;
     total: number = 0;
     cartProduct: Product[] = [];
+    userBuy: User  = new User;
 
 }

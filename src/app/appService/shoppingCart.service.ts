@@ -16,7 +16,7 @@ export class ShoppingCartService {
 
   constructor(private http:HttpClient) { }
 
-  create(newCart: any):Observable<CustomResponse>{
+  create(newCart: ShoppingCart):Observable<CustomResponse>{
     return this.http.post<CustomResponse>(this.url+'/create', newCart);
   }
 
@@ -47,8 +47,6 @@ export class ShoppingCartService {
         catchError(this.error)
       );
   }
-
-
   // Handle Errors
   error(error: HttpErrorResponse) {
     let errorMessage = '';
@@ -57,7 +55,6 @@ export class ShoppingCartService {
     } else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-
     return throwError(errorMessage);
   }
    

@@ -9,6 +9,7 @@ export class Product {
     idColor: ProductColor[] = [];
     brand: String = "";
     size: String = "";
+    units: number = 0;
     stock: number = 0; 
 
 }

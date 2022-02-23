@@ -5,7 +5,7 @@ import { ShoppingCartService } from './../../appService/shoppingCart.service';
 import { ShoppingCart } from './../../appEntity/shoppingCart';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from 'src/app/store.service';
+import { StoreService } from 'src/app/observablesService/store.service';
 
 @Component({
   selector: 'app-create-cart',
@@ -24,7 +24,7 @@ export class CreateCartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  this.store.finalTotalPrice$.subscribe();//obtener valor de precio total'
+  this.store.finalTotalPrice$.subscribe();
 }
 
   deleteCart(product:Product){

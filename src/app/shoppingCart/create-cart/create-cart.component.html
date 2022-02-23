@@ -17,11 +17,12 @@
               aria-hidden="true"></i></span>
         </div>
         <a routerLink="/productDetails/{{product.idProduct}}" class="product-image">
-          <img src="../../../assets/img/product-img/product-1.jpg" class="cart-thumb" alt="">
+          <img src="{{product.picture}}" class="cart-thumb" alt="">
           <!-- Cart Item Desc -->
           <div class="cart-item-desc">
             <span class="badge">{{product.brand}}</span>
             <h6>{{product.name}}</h6>
+            <p>cantidad={{product.units}}</p>
             <p class="size">{{product.size}}</p>
             <p class="color">{{product.idColor[0].nameColor}}</p>
             <p class="price">$ {{product.price}}</p>
@@ -35,11 +36,11 @@
       <ul class="summary-table">
         <li><span>Subtotal:</span> <span>$ {{(finalPrice$ | async)}}</span></li>
         <li><span>Envío:</span> <span>Free</span></li>
-        <li><span>Descuento:</span> <span>-15%</span></li>
-        <li><span>Total:</span> <span>$232.00</span></li>
+        <li><span>Descuento:</span> <span>No disponible</span></li>
+        <li><span>Total:</span> <span>$ {{(finalPrice$ | async)}}</span></li>
       </ul>
       <div class="checkout-btn mt-100">
-        <a (click)="saveCart()" class="btn essence-btn">Confirmar comprar</a>
+        <button (click)="saveCart()" class="btn essence-btn">Confirmar comprar</button>
       </div>
     </div>
   </div>

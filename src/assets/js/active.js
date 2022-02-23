@@ -47,6 +47,7 @@
         });
     }
 
+
     // :: Header Cart Active Code
     var cartbtn1 = $('#essenceCartBtn');
     var cartOverlay = $(".cart-bg-overlay");

@@ -24,7 +24,7 @@
                         <li><a href="#">Categorías</a>
                             <div class="megamenu">
                                 <ul class="single-mega cn-col-5">
-                                    <li class="title">Colección Mujeres</li>
+                                    <li routerLink="/shop/Mujer" class="title">Colección Mujeres</li>
                                     <li><a href="#">Vestidos</a></li>
                                     <li><a href="#">Blusas</a></li>
                                     <li><a href="#">Camisetas</a></li>
@@ -32,7 +32,7 @@
                                     <li><a href="#">Hoodies</a></li>
                                 </ul>
                                 <ul class="single-mega cn-col-5">
-                                    <li class="title">Colección Hombres</li>
+                                    <li routerLink="/shop/Hombre" class="title">Colección Hombres</li>
                                     <li><a href="#">Camisas</a></li>
                                     <li><a href="#">Polo</a></li>
                                     <li><a href="#">Camisetas</a></li>
@@ -70,12 +70,26 @@
                 <div class="classynav">
                     <ul>
                         <li><a href="#"><img src="../../../assets/img/core-img/user.svg" alt=""></a>
-                            <div class="megamenu" style="background: transparent;">
+                            <div *ngIf="userActive==false" class="megamenu" style="background: transparent;">
                                 <ul class="single-mega cn-col-4">
                                     <li><button class="btn essence-btn" type="button" routerLink="/register">Registrarse</button></li>
                                 </ul>
                                 <ul class="single-mega cn-col-4">
                                     <li><button class="btn essence-btn" type="button" routerLink="/login">Iniciar Sesion</button></li>
+                                </ul>
+                            </div>
+                            <div *ngIf="userActive==true" class="megamenu" style="background: transparent;">
+                                <ul class="single-mega cn-col-4">
+                                    <li><p class="btn essence-btn">Mis datos</p></li>
+                                </ul>
+                                <ul class="single-mega cn-col-4">
+                                    <li><button class="btn essence-btn" type="button" >Mis compras</button></li>
+                                </ul>
+                                <ul class="single-mega cn-col-4">
+                                    <li><button class="btn essence-btn" type="button" routerLink="/panelAdmin/controlAdmin">Panel admin</button></li>
+                                </ul>
+                                <ul class="single-mega cn-col-4">
+                                    <li><button class="btn essence-btn" type="button" (click)="clientOff()" routerLink="/login">Cerrar sesion</button></li>
                                 </ul>
                             </div>
                         </li>

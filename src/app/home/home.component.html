@@ -1,22 +1,7 @@
 <app-header></app-header>
 
 <app-cart-slide></app-cart-slide>
-<!-- ##### Welcome Area Start ##### -->
-<section class="welcome_area bg-img background-overlay" style="background-image: url(../../../../assets/img/bg-img/slide-01.jpg);">
-    <div class="container h-100">
-        <div class="row h-100 align-items-center">
-            <div class="col-12">
-                <div class="hero-content">
-                    <h6>Cidenet Shop</h6>
-                    <h2 *ngIf="userActive==false">Nueva Coleccion</h2>
-                    <h2 *ngIf="userActive==true">Nueva Coleccion <br> para {{loguedUser.firstName}}</h2>
-                    <a routerLink="/shop" class="btn essence-btn">Ver coleccion</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ##### Welcome Area End ##### -->
+
 <app-body></app-body>
 
 <app-footer></app-footer>

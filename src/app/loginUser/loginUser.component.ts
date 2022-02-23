@@ -1,3 +1,4 @@
+import { LoginClientService } from './../observablesService/loginClient.service';
 import  Swal from 'sweetalert2';
 import { User } from './../user';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,7 @@ import { debounceTime } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
 form!: FormGroup;
 
-  constructor(private userService:UserService, private router:Router) {
+  constructor(private userService:UserService, private router:Router, private validateClientOn: LoginClientService) {
     this.buildForm();
    }
 
@@ -47,17 +48,8 @@ public invalidForm(param:any) {
   loginUser():void{
     const valueEmail = this.formGet('email')?.value;
     const valuePassword = this.formGet('password')?.value;
-    this.userService.get(valueEmail, valuePassword).subscribe((
-      res: User)=>{
-        Swal.fire({
-          icon: 'success',
-          title: 'Bienvenido ' + res.firstName,
-          showConfirmButton: false,
-          timer: 1500
-        })
-      this.router.navigate(['/home/' + res.idCard]);
-      }
-    )} 
+    this.validateClientOn.loginClient(valueEmail, valuePassword);
+   } 
 
 
 }

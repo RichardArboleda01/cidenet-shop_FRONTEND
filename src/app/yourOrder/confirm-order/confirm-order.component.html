@@ -1,0 +1,116 @@
+<app-header></app-header>
+<app-cart-slide></app-cart-slide>
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb_area bg-img" style="background-image: url(img/bg-img/breadcumb.jpg);">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12">
+        <div class="page-title text-center">
+          <h2>Finaliza tu compra</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
+<!-- ##### Checkout Area Start ##### -->
+<div class="checkout_area section-padding-80">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-12 col-md-6">
+        <div class="checkout_details_area mt-50 clearfix">
+
+          <div class="cart-page-heading mb-30">
+            <h5>Recibo de compra</h5>
+          </div>
+
+          <form action="#" method="post">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="first_name">Nombre <span>*</span></label>
+                <input type="text" class="form-control" id="first_name" value="" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="last_name">Apellido <span>*</span></label>
+                <input type="text" class="form-control" id="last_name" value="" required>
+              </div>
+              <div class="col-12 mb-3">
+                <label for="country">Pais<span>*</span></label>
+                <select class="w-100" id="country">
+                  <option value="usa">United States</option>
+                  <option value="uk">United Kingdom</option>
+                  <option value="ger">Germany</option>
+                  <option value="fra">France</option>
+                  <option value="ind">India</option>
+                  <option value="aus">Australia</option>
+                  <option value="bra">Brazil</option>
+                  <option value="cana">Canada</option>
+                </select>
+              </div>
+              <div class="col-12 mb-3">
+                <label for="street_address">Direccion de Residencia <span>*</span></label>
+                <input type="text" class="form-control mb-3" id="street_address" value="">
+              </div>
+              <div class="col-12 mb-3">
+                <label for="city">Ciudad <span>*</span></label>
+                <input type="text" class="form-control" id="city" value="">
+              </div>
+              <div class="col-12 mb-3">
+                <label for="phone_number">Celular<span>*</span></label>
+                <input type="number" class="form-control" id="phone_number" min="0" value="">
+              </div>
+              <div class="col-12 mb-4">
+                <label for="email_address">Email <span>*</span></label>
+                <input type="email" class="form-control" id="email_address" value="">
+              </div>
+
+              <div class="col-12">
+                <div class="custom-control custom-checkbox d-block mb-2">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Terms and conitions</label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+        <div class="order-details-confirmation">
+
+          <div class="cart-page-heading">
+            <h5>Tu orden</h5>
+            <p>Detalle de tus productos</p>
+          </div>
+
+          <ul class="order-details-form mb-4">
+            <li><span>Tus productos</span> <span>Total</span></li>
+            <li>
+                <div class="single-cart-item">
+                    <div >
+                      <span class="product-remove"></span>
+                    </div>
+                    <a class="product-image">
+                      <!-- Cart Item Desc -->
+                      <div class="cart-item-desc" *ngFor="let product of (myCart$ | async)">
+                        <span class="badge"><h6>{{product.name}} - {{product.brand}}</h6></span>
+                        <p>Unidades: {{product.units}} -------- Talla: {{product.size}}<br> Color: {{product.idColor[0].nameColor}} -------- Precio: ${{product.price}}</p>
+                      </div>
+                    </a>
+                  </div>
+            </li>
+            <li><span>Subtotal</span> <span>$ {{(finalPrice$ | async)}}</span></li>
+            <li><span>Envio</span> <span>Free</span></li>
+            <li><span>Total</span> <span>$ {{(finalPrice$ | async)}}</span></li>
+          </ul>
+
+          <button (click)="endShopping()" class="btn essence-btn">Finalizar compra</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ##### Checkout Area End ##### -->
+<app-footer></app-footer>

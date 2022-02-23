@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { Product } from 'src/app/product';
 import { CustomResponse } from './../../custom-response';
 import { debounceTime } from 'rxjs/operators';
@@ -6,6 +7,7 @@ import { Router } from '@angular/router';
 import { ProductService } from './../../product.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductColor } from './../../product';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create',
@@ -18,8 +20,10 @@ export class CreateComponent implements OnInit {
   public colors: ProductColor[] = [];
   public productColor: ProductColor[] = [];
   public newProduct: Product = new Product;
+  public images: any  = [];
+  public previewImg: string = '';
 
-  constructor(private productService: ProductService, private router: Router, private formBuilder: FormBuilder) { 
+  constructor(private productService: ProductService, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer) { 
   }
 
   ngOnInit(): void {
@@ -46,7 +50,6 @@ export class CreateComponent implements OnInit {
     }); 
 }
 
-
 public formGet(param:any) {
   return this.form.get(param);
 }
@@ -68,23 +71,13 @@ createProduct(): void {
   this.newProduct.idColor = this.productColor;
   this.productService.create(this.newProduct).subscribe((res)=>{
     this.router.navigate(["/shop"])
-  })
- 
-
+  });
 }
 
 getAllColors(){
   this.productService.getAllColors().subscribe((res:any)=>{
     this.colors = res;
-    console.log(this.colors);
-    
-  })
-}
-
-
- changeColor() {
-  
-  console.log('cambio color: ');
+  });
 }
 
 // Getter method to access formcontrols
@@ -93,11 +86,48 @@ get getIdColor() {
   form.get('idColor');
 }
 
-changeCity(e : any) {
-  console.log(e)
-  this.form.setValue(e.target.value, {
-    onlySelf: true
+captureImg(event: any) {
+  const getImages = event.target.files[0];
+  const valuePicture = this.formGet('picture')?.value;
+  this.blobFile(getImages).then((picture: any) => {
+    this.previewImg = picture.base;
+    console.log(picture);
+    
   })
+  this.images.push(getImages);
+  //console.log(event.target.files);
 }
 
+//turn img to 64 base
+blobFile = async ($event: any) => new Promise((resolve, reject) => {
+  try {
+    const unsafeImg = window.URL.createObjectURL($event);
+    const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+    const reader = new FileReader();
+    reader.readAsDataURL($event);
+    reader.onload = () => {
+      resolve({
+        blob: $event,
+        image,
+        base: reader.result
+      });
+    };
+    reader.onerror = error => {
+      resolve({
+        blob: $event,
+        image,
+        base: null
+      });
+    };
+
+  } catch (e) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Lo sentimos, hubo un error al cargar la imagen seleccionada',
+      footer: '<a href="">Why do I have this issue?</a>'
+    });
+  }
+})
 }
+

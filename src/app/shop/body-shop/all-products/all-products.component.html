@@ -61,7 +61,7 @@
            </div>
 
            <div>
-            <p><button (click)="getAllProduct()">Eliminar filtros</button></p>
+            <p ><button class="btn essence-btn" (click)="getAllProduct()">Eliminar filtros</button></p>
            </div>
 
            <!-- ##### Single Widget ##### -->
@@ -107,7 +107,8 @@
                <div class="product-topbar d-flex align-items-center justify-content-between">
                  <!-- Total Products -->
                  <div class="total-products">
-                   <p><span>{{productCount}}</span> Productos encontrados</p>
+                   <p *ngIf="userActive==true"><span>{{productCount}}</span> Productos encontrados para {{loguedUser.firstName}}</p>
+                   <p *ngIf="userActive==false"><span>{{productCount}}</span> Productos encontrados</p>
                  </div>
                  <!-- Sorting -->
                  <div class="product-sorting d-flex">
@@ -134,7 +135,7 @@
                    <div class="product-img">
                      <img src="{{product.picture}}" alt="">
                      <!-- Hover Thumb -->
-                     <img class="hover-img" src="../../../../assets/img/product-img/product-3.jpg" alt="">
+                    <!-- <img class="hover-img" src="../../../../assets/img/product-img/product-3.jpg" alt=""> -->
 
                      <!-- Favourite -->
                      <div class="product-favourite">
@@ -146,7 +147,8 @@
                    <div class="product-description">
                      <span>{{product.brand}}</span>
                      <a routerLink="/productDetails/{{product.idProduct}}">
-                       <h6>{{product.name}} - {{product.stock}}</h6>
+                       <p *ngIf="product.stock <= 0" style="font-size: 10; color: red;">{{product.name}} - {{product.stock}}</p>
+                       <p *ngIf="product.stock > 0">{{product.name}} - {{product.stock}}</p>
                      </a>
                      <p class="product-price">${{product.price}}</p>
 
@@ -154,7 +156,8 @@
                      <div class="hover-content">
                        <!-- Add to Cart -->
                        <div class="add-to-cart-btn">
-                         <a (click)="addProductToCart(product)" class="btn essence-btn">Añadir al carrito</a>
+                         <button (click)="addProductToCart(product)" *ngIf="userActive==true" class="btn essence-btn">Añadir al carrito</button>
+                         <button (click)="clientNotLogued()" *ngIf="userActive==false" class="btn essence-btn">Añadir al carrito</button>
                        </div>
                      </div>
                    </div>
@@ -180,3 +183,4 @@
    </div>
  </section>
  <!-- ##### Shop Grid Area End ##### -->
+

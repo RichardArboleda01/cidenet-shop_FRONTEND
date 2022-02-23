@@ -1,0 +1,33 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+<app-header></app-header>
+<div class="page-top">
+  <div class="container p-5">
+    <h1>Gestion de productos</h1>
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre del producto</th>
+          <th>Costo</th>
+          <th>Unidades disponibles</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.stock}}</td>
+          <td><button style="margin-right: 10%;" class="bg-primary"> <i class="fas fa-edit"></i> </button>
+          <button class="bg-danger"> <i class="fas fa-trash"></i> </button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-footer></app-footer>
