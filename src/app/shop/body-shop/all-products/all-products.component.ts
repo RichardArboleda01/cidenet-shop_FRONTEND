@@ -8,7 +8,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../../product.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/product';
-import { throwIfEmpty } from 'rxjs';
 
 @Component({
   selector: 'app-all-products',
@@ -74,7 +73,7 @@ export class AllProductsComponent implements OnInit {
   }
 
   addProductToCart(product: Product) {
-    if(product.stock > 0) {
+    if (product.stock > 0) {
       product.stock -= 1;
       product.units += 1;
       this.store.addProductToCart(product);
@@ -82,8 +81,7 @@ export class AllProductsComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Lo sentimos, no hay stock de este producto :(',
-        footer: '<a href="">Why do I have this issue?</a>'
+        text: 'Lo sentimos, no hay unidades disponibles de este producto :(',
       })
     }
   }
@@ -98,16 +96,17 @@ export class AllProductsComponent implements OnInit {
 
   clientNotLogued() {
     Swal.fire({
-      title: 'Primero debes iniciar sesion',
-      text: "Seras redireccionado al inicio de sesion",
+      title: 'Oops...',
+      text: "Primero debes iniciar sesion",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Iniciar sesion'
+      confirmButtonText: 'Iniciar sesion',
+      cancelButtonText: 'Registrarse'
     }).then((result) => {
       if (result.isConfirmed) {
-    this.router.navigate(["/login"])
+        this.router.navigate(["/login"])
       }
     })
   }

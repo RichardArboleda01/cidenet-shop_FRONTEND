@@ -1,8 +1,5 @@
 import { Product } from './../../product';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
 import { ShoppingCartService } from './../../appService/shoppingCart.service';
-import { ShoppingCart } from './../../appEntity/shoppingCart';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from 'src/app/observablesService/store.service';

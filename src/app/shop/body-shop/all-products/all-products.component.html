@@ -18,23 +18,23 @@
 
            <!-- ##### Single Widget ##### -->
            <div class="widget catagory mb-50">
-            <!-- Widget Title -->
-            <h6 class="widget-title mb-30">Género</h6>
+             <!-- Widget Title -->
+             <h6 class="widget-title mb-30">Género</h6>
 
-            <!--  Catagories  -->
-            <div class="catagories-menu">
-              <ul id="menu-content2" class="menu-content collapse show">
-                <!-- Single Item -->
-                <li data-toggle="collapse" data-target="#clothing">
-                  <a href="#">Por género</a>
-                  <ul class="sub-menu collapse show" id="clothing">
-                    <li><a routerLink="/shop/Hombre">Hombres</a></li>
-                    <li><a routerLink="/shop/Mujer">Mujeres</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
+             <!--  Catagories  -->
+             <div class="catagories-menu">
+               <ul id="menu-content2" class="menu-content collapse show">
+                 <!-- Single Item -->
+                 <li data-toggle="collapse" data-target="#clothing">
+                   <a href="#">Por género</a>
+                   <ul class="sub-menu collapse show" id="clothing">
+                     <li><a routerLink="/shop/Hombre">Hombres</a></li>
+                     <li><a routerLink="/shop/Mujer">Mujeres</a></li>
+                   </ul>
+                 </li>
+               </ul>
+             </div>
+           </div>
 
            <!-- ##### Single Widget ##### -->
            <div class="widget catagory mb-50">
@@ -61,7 +61,7 @@
            </div>
 
            <div>
-            <p ><button class="btn essence-btn" (click)="getAllProduct()">Eliminar filtros</button></p>
+             <p><button class="btn essence-btn" (click)="getAllProduct()">Eliminar filtros</button></p>
            </div>
 
            <!-- ##### Single Widget ##### -->
@@ -107,14 +107,15 @@
                <div class="product-topbar d-flex align-items-center justify-content-between">
                  <!-- Total Products -->
                  <div class="total-products">
-                   <p *ngIf="userActive==true"><span>{{productCount}}</span> Productos encontrados para {{loguedUser.firstName}}</p>
-                   <p *ngIf="userActive==false"><span>{{productCount}}</span> Productos encontrados</p>
+                   <p *ngIf="userActive==true"><span>{{products.length}}</span> Productos encontrados para
+                     {{loguedUser.firstName}}</p>
+                   <p *ngIf="userActive==false"><span>{{products.length}}</span> Productos encontrados</p>
                  </div>
                  <!-- Sorting -->
                  <div class="product-sorting d-flex">
                    <p>Sort by:</p>
                    <form action="#" method="get">
-                     <select name="select" id="sortByselect" >
+                     <select name="select" id="sortByselect">
                        <option value="value">Highest Rated</option>
                        <option value="value">Newest</option>
                        <option value="value">Price: $$ - $</option>
@@ -135,7 +136,7 @@
                    <div class="product-img">
                      <img src="{{product.picture}}" alt="">
                      <!-- Hover Thumb -->
-                    <!-- <img class="hover-img" src="../../../../assets/img/product-img/product-3.jpg" alt=""> -->
+                     <!-- <img class="hover-img" src="../../../../assets/img/product-img/product-3.jpg" alt=""> -->
 
                      <!-- Favourite -->
                      <div class="product-favourite">
@@ -147,7 +148,8 @@
                    <div class="product-description">
                      <span>{{product.brand}}</span>
                      <a routerLink="/productDetails/{{product.idProduct}}">
-                       <p *ngIf="product.stock <= 0" style="font-size: 10; color: red;">{{product.name}} - {{product.stock}}</p>
+                       <p *ngIf="product.stock <= 0" style="font-size: 10; color: red;">{{product.name}} -
+                         {{product.stock}}</p>
                        <p *ngIf="product.stock > 0">{{product.name}} - {{product.stock}}</p>
                      </a>
                      <p class="product-price">${{product.price}}</p>
@@ -156,8 +158,10 @@
                      <div class="hover-content">
                        <!-- Add to Cart -->
                        <div class="add-to-cart-btn">
-                         <button (click)="addProductToCart(product)" *ngIf="userActive==true" class="btn essence-btn">Añadir al carrito</button>
-                         <button (click)="clientNotLogued()" *ngIf="userActive==false" class="btn essence-btn">Añadir al carrito</button>
+                         <button (click)="addProductToCart(product)" *ngIf="userActive==true"
+                           class="btn essence-btn">Añadir al carrito</button>
+                         <button (click)="clientNotLogued()" *ngIf="userActive==false" class="btn essence-btn">Añadir al
+                           carrito</button>
                        </div>
                      </div>
                    </div>
@@ -183,4 +187,3 @@
    </div>
  </section>
  <!-- ##### Shop Grid Area End ##### -->
-

@@ -13,23 +13,24 @@ export class HomeComponent implements OnInit {
   loguedUser: User = new User;
   userActive: Boolean = false;
 
-  constructor(private userService: UserService, 
-    private router: Router, 
-    private activatedRoute:ActivatedRoute) { 
+  constructor(private userService: UserService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.getProductById();
-    
+
   }
 
-  getProductById():void{
+  getProductById(): void {
     this.activatedRoute.params.subscribe(
-      e=>{
-        let idClient=e['idClient'];
-        if(idClient){
+      e => {
+        let idClient = e['idClient'];
+        if (idClient) {
           this.userService.getClientById(idClient).subscribe(
-            (res:User)=>{this.loguedUser=res; this.userActive = true; console.log(res);
+            (res: User) => {
+              this.loguedUser = res; this.userActive = true;
             }
           );
         }

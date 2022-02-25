@@ -70,6 +70,11 @@ createProduct(): void {
   })
   this.newProduct.idColor = this.productColor;
   this.productService.create(this.newProduct).subscribe((res)=>{
+    Swal.fire({
+      icon: 'success',
+      title: '¡Hecho!',
+      text: 'Producto creado correctamente'
+  })
     this.router.navigate(["/shop"])
   });
 }
@@ -125,7 +130,6 @@ blobFile = async ($event: any) => new Promise((resolve, reject) => {
       icon: 'error',
       title: 'Oops...',
       text: 'Lo sentimos, hubo un error al cargar la imagen seleccionada',
-      footer: '<a href="">Why do I have this issue?</a>'
     });
   }
 })

@@ -13,8 +13,8 @@ export class UserService {
 
   constructor(private http:HttpClient) { }
 
-  create(userRegister:User):Observable<String>{
-    return this.http.post<String>(this.url+'/create', userRegister);
+  create(userRegister:User):Observable<any>{
+    return this.http.post<User>(this.url+'/create', userRegister);
   }
 
   get(email:any, password:any):Observable<User>{

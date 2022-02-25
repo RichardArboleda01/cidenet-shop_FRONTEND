@@ -26,7 +26,8 @@ import { CreateCartComponent } from './shoppingCart/create-cart/create-cart.comp
 import { ConfirmOrderComponent } from './yourOrder/confirm-order/confirm-order.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GetCartComponent } from './shoppingCart/get-cart/get-cart.component';
-import { ControlAdminComponent } from './panelAdmin/control-admin/control-admin.component'
+import { ControlAdminComponent } from './panelAdmin/control-admin/control-admin.component';
+import { EditComponent } from './crudProduct/edit/edit.component';
 const routes:Routes=[
   { path: '', component: HomeComponent, pathMatch: 'full'},
   { path: 'home', component: HomeComponent},
@@ -39,7 +40,8 @@ const routes:Routes=[
   { path: 'create', component: CreateComponent },
   { path: 'home/:idClient', component: HomeComponent},
   { path: 'yourOrder/confirmOrder', component: ConfirmOrderComponent},
-  { path: 'panelAdmin/controlAdmin', component: ControlAdminComponent}
+  { path: 'panelAdmin/controlAdmin', component: ControlAdminComponent},
+  { path: 'crudProduct/edit', component: EditComponent}
 
 ]
 
@@ -65,7 +67,8 @@ const routes:Routes=[
     CreateCartComponent,
     ConfirmOrderComponent,
     GetCartComponent,
-    ControlAdminComponent
+    ControlAdminComponent,
+    EditComponent
 
   ],
   imports: [

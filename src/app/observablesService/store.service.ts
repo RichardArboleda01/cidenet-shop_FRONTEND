@@ -26,10 +26,15 @@ export class StoreService implements OnInit {
   cantidad: number = 0;
   private userBuy: User = new User;
 
-  constructor(private cartService: ShoppingCartService, private router: Router, private loginClient: LoginClientService, private localStorage: LocalstorageService) { 
-    this.validateUserLogin();}
+  constructor(private cartService: ShoppingCartService, private router: Router, private loginClient: LoginClientService, private localStorage: LocalstorageService) {
+    this.validateUserLogin();
+  }
 
   ngOnInit(): void {
+  }
+
+  validateUserLogin() {
+    this.userBuy = this.loginClient.getInfoClient();
   }
 
   addProductToCart(product: Product) {
@@ -37,11 +42,8 @@ export class StoreService implements OnInit {
     this.listChange = this.myList.filter(function (i) { return i.idProduct == product.idProduct });
     var productChange = this.listChange[0];
     if (productChange !== undefined) {
-      console.log(this.myList);
-      
       this.myList = this.myList.filter(function (i) { return i.idProduct !== product.idProduct })
-      console.log(this.myList);
-      
+
       this.myList.push(productChange);
     } else {
       this.myList.push(product);
@@ -50,8 +52,8 @@ export class StoreService implements OnInit {
     this.totalPrice += product.price;
     this.finalTotalPrice.next(this.totalPrice);
     this.finalShoppingCart.cartProduct = this.myList;
-    this.finalShoppingCart.total = this.totalPrice;
-    this.finalShoppingCart.userBuy = this.userBuy;
+    // this.finalShoppingCart.total = this.totalPrice;
+    // this.finalShoppingCart.userBuy = this.userBuy;
     //this.localStorage.set("cart", this.finalShoppingCart)
   }
 
@@ -63,48 +65,43 @@ export class StoreService implements OnInit {
     product.units = 0;
     this.finalTotalPrice.next(this.totalPrice);
     this.finalShoppingCart.cartProduct = this.myList;
-    this.finalShoppingCart.total = this.totalPrice;
-    this.finalShoppingCart.userBuy = this.userBuy;
+    // this.finalShoppingCart.total = this.totalPrice;
+    // this.finalShoppingCart.userBuy = this.userBuy;
     //this.localStorage.set("cart", this.finalShoppingCart)
   }
 
   saveCart() {
-    if(this.finalShoppingCart.cartProduct.length > 0) {
-    this.finalShoppingCart.cartProduct = this.myList;
-    this.finalShoppingCart.total = this.totalPrice;
-    this.finalShoppingCart.userBuy.idCard = 1098765433;
+    if (this.finalShoppingCart.cartProduct.length > 0) {
+      this.finalShoppingCart.cartProduct = this.myList;
+      this.finalShoppingCart.total = this.totalPrice;
+      this.finalShoppingCart.userBuy = this.userBuy;
       this.cartService.create(this.finalShoppingCart).subscribe((res: CustomResponse) => {
-      Swal.fire({
+        Swal.fire({
           icon: 'success',
           title: 'Productos añadidos al carrito',
           text: '¡Falta poco para que te los lleves!'
+        })
+        this.router.navigate(['/yourOrder/confirmOrder']);
       })
-      this.router.navigate(['/yourOrder/confirmOrder']);
-    })
-  } else {
-    Swal.fire({
-      icon: 'error',
-      title: 'Algo ha salido mal :(',
-      text: 'Debes agregar un producto'
-  })
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debes agregar un producto'
+      })
     }
-     
+
+  }
+  getLocalStorage() {
+    if (this.localStorage.get('cart') !== null) {
+      this.finalShoppingCart = this.localStorage.get('cart');
+      this.myCart.next(this.finalShoppingCart.cartProduct);
+      this.totalPrice = this.finalShoppingCart.total;
+      this.finalTotalPrice.next(this.totalPrice);
+      this.myList = this.finalShoppingCart.cartProduct;
+    } else {
+      this.finalShoppingCart = new ShoppingCart;
+      this.myCart.next(this.finalShoppingCart.cartProduct);
     }
-    getLocalStorage() {
-      if (this.localStorage.get('cart') !== null) {
-          this.finalShoppingCart = this.localStorage.get('cart');
-          this.myCart.next(this.finalShoppingCart.cartProduct);
-          this.totalPrice = this.finalShoppingCart.total;
-          this.finalTotalPrice.next(this.totalPrice);
-          this.myList = this.finalShoppingCart.cartProduct;
-      } else {
-          this.finalShoppingCart = new ShoppingCart;
-          this.myCart.next(this.finalShoppingCart.cartProduct);
-      }
   }
-
-  validateUserLogin() {
-    this.userBuy = this.loginClient.getInfoClient();
-  }
-
 }

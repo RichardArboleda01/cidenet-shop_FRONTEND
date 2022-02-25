@@ -28,7 +28,7 @@ export class LoginClientService {
             res: User) => {
             Swal.fire({
                 icon: 'success',
-                title: 'Bienvenido ' + res.firstName,
+                title: '!Bienvenido ' + res.firstName + '¡',
                 showConfirmButton: false,
                 timer: 1500
             });
@@ -40,18 +40,16 @@ export class LoginClientService {
         })
     }
 
-    getInfoClient() {
-        return this.clientLogued;
-    }
+   
 
     getValidateClientOn() {
         return this.validateClientOn
     }
     getLocalStorage() {
-        if (this.localStorage.get('client') !== null) {
-            this.clientLogued = this.localStorage.get('client');
+        if (this.localStorage.get("client") !== null) {
+            this.clientLogued = this.localStorage.get("client");
             this.clientOn.next(this.clientLogued);
-            this.validateClientOn = true;
+            this.validateClientOn = true;     
         } else {
             this.clientLogued = new User;
             this.clientOn.next(this.clientLogued);
@@ -59,6 +57,11 @@ export class LoginClientService {
             this.localStorage.clear();
         }
     }
+
+    getInfoClient() {
+        return this.localStorage.get("client");   
+    }
+
     closeSesionClient() {
         this.localStorage.clear();
         this.validateClientOn = false;

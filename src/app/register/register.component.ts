@@ -62,10 +62,9 @@ export class RegisterComponent implements OnInit {
           res) => {
             Swal.fire({
               icon: 'success',
-              title: 'Te has registrado con exito',
-              showConfirmButton: false,
-              timer: 1500
-            })
+              title: '¡Te has registrado con exito!',
+              text: 'Ahora puedes iniciar sesion'
+          })
             this.router.navigate(['/login'])
     })} else {
       this.form.markAllAsTouched();

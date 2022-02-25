@@ -22,17 +22,13 @@ export class AreaWelcomeComponent implements OnInit {
   ngOnInit(): void {
     this.validateClientOn();
     this.validateUserLogin();
-    console.log("hola");
   }
 
   validateUserLogin() {
     this.loguedUser = this.loginClient.getInfoClient();
-    console.log(this.loguedUser);
   }
 
   validateClientOn() {
     this.userActive = this.loginClient.getValidateClientOn();
-    console.log(this.userActive);
-
   }
 }

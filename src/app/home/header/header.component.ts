@@ -36,9 +36,8 @@ export class HeaderComponent implements OnInit{
   clientOff() {
     Swal.fire({
       icon: 'success',
-      title: 'Se ha cerrado sesion',
-      showConfirmButton: false,
-      timer: 1500
+      title: '¡Listo!',
+      text: 'Has cerrado sesion'
   })
     this.loginClient.closeSesionClient();
     this.router.navigate(['/home']);

@@ -48,7 +48,17 @@ public invalidForm(param:any) {
   loginUser():void{
     const valueEmail = this.formGet('email')?.value;
     const valuePassword = this.formGet('password')?.value;
-    this.validateClientOn.loginClient(valueEmail, valuePassword);
+    if(this.form.valid) {
+      this.validateClientOn.loginClient(valueEmail, valuePassword);
+    } else {
+      this.form.markAllAsTouched();
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Las credenciales son incorrectas o no ingresaste ninguna credencial, intentalo nuevamente'
+    })
+    }
+    
    } 
 
 

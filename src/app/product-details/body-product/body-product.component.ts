@@ -31,7 +31,7 @@ export class BodyProductComponent implements OnInit {
         
         if(idProduct){
           this.productService.getById(idProduct).subscribe(
-            (res:CustomResponse)=>{this.getProduct=res.object_response[0]; console.log(res);
+            (res:CustomResponse)=>{this.getProduct=res.object_response[0];
             }
           );
         }
@@ -41,7 +41,6 @@ export class BodyProductComponent implements OnInit {
 
   changeColor(e:any) {
     this.idColorTest = e
-    console.log(this.idColorTest)
    
   }
 
