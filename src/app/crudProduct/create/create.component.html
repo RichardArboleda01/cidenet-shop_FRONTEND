@@ -1,38 +1,36 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> 
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
 <!------ Include the above in your HEAD tag ---------->
 
 <form (ngSubmit)="createProduct()" [formGroup]="form" novalidate>
   <div class="container register">
     <div class="row">
-      <div class="col-md-3 register-left">
-        <a [routerLink]="['/home']"><img
-            src="https://www.cidenet.com.co/wp-content/uploads/2021/04/cidenet-software-a-la-medida-medellin.png"
-            alt="" /></a>
-        <h4>¡Bienvenido a Cidenet Shop!</h4>
-        <p><b>Comienza a ver nuestro catálogo.</b><br><b>¡Te encantará!</b></p>
-        <p><b>¿Ya estas registrado? Presiona el boton <br>"Iniciar Sesión"</b></p>
-        <input routerLink="/login" type="submit" name="" value="Iniciar Sesión" /><br />
-      </div>
-      <div class="col-md-9 register-right">
+      <div class="col-md-12 register-right">
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <h3 class="register-heading">Crear un producto</h3>
             <div class="row register-form">
-              <div class="col-md-10">
-                <div class="form-group">
-                  <label class="label">Categoria</label>
-                  <div class="control has-icons-left has-icons-right">
-                    <input type="text" class="input" formControlName="category" />
-                  </div>
-                </div>
+              <div class="col-md-6">
                 <div class="form-group">
                   <label class="label">Nombre</label>
                   <div class="control has-icons-left has-icons-right">
                     <input type="text" class="input" formControlName="name" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="label">Marca</label>
+                  <div class="control has-icons-left has-icons-right">
+                    <input type="text" class="input" formControlName="brand" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="label">Descripcion</label>
+                  <div class="control has-icons-left has-icons-right">
+                    <input type="text" class="input" formControlName="description" />
                   </div>
                 </div>
                 <div class="form-group">
@@ -41,44 +39,38 @@
                     <input type="number" class="input" formControlName="price" />
                   </div>
                 </div>
+              </div>
+              <div class="col-md-6">
                 <div class="form-group">
-                  <label class="label">Descripcion</label>
-                  <div class="control has-icons-left has-icons-right">
-                    <input type="text" class="input" formControlName="description" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="label">Imagen</label>
-                  <div class="control has-icons-left has-icons-right">
-                    <input (change)="captureImg($event)" type="text" class="input" formControlName="picture" />
-                  </div>
-                  <div *ngIf="previewImg">
-                    <img width="150px" [src] = "previewImg" alt="">
-                  </div>
-                </div>
-
-                <div class="form-group">
+                  <label class="label">Elige un color</label>
                   <div class="control select has-icons-left has-icons-right">
-                      <label class="label">Color</label>
-                      <select  formControlName="idColor">
-                        <option *ngFor="let color of colors" [ngValue]="color.idColor">
-                          {{ color.nameColor}}
-                        </option>
-                      </select>                                     
-                    </div>
-                </div>                
-
-                
-                <div class="form-group">
-                  <label class="label">Marca</label>
-                  <div class="control has-icons-left has-icons-right">
-                    <input type="text" class="input" formControlName="brand" />
+                    <select formControlName="idColor">
+                      <option *ngFor="let color of colors" [ngValue]="color.idColor">
+                        {{ color.nameColor}}
+                      </option>
+                      <option selected="true" hidden>Selecciona un color disponible</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="label">Talla</label>
-                  <div class="control has-icons-left has-icons-right">
-                    <input type="text" class="input" formControlName="size" />
+                  <div class="control select has-icons-left has-icons-right">
+                    <select formControlName="size">
+                      <option selected="true" hidden>Selecciona una talla disponible</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="label">Categoria</label>
+                  <div class="control select has-icons-left has-icons-right">
+                    <select formControlName="category">
+                      <option selected="true" hidden>Seleccionar una categoria</option>
+                      <option value="Hombre">Hombre</option>
+                      <option value="Mujer">Mujer</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
@@ -87,10 +79,16 @@
                     <input type="number" class="input" formControlName="stock" />
                   </div>
                 </div>
-
-                <p>Form value: {{ form.value | json }}</p> 
-                <button type="submit" class="btnRegister">Continuar</button>
               </div>
+
+              <div class="form-group" class="col-md-12">
+                <label class="label">Imagen</label>
+                <div class="control has-icons-left has-icons-right">
+                  <input type="text" class="input" formControlName="picture" />
+                </div>
+              </div>
+              <button type="submit" class="btnRegister">Continuar</button>
+              <p>Form value: {{ form.value | json }}</p>
             </div>
           </div>
         </div>

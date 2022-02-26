@@ -36,10 +36,7 @@ export class RegisterComponent implements OnInit {
       this.form.valueChanges
       .pipe(
         debounceTime(1000)
-      )
-      .subscribe(value => {
-        console.log(value);
-      }); 
+      ); 
   }
 
 

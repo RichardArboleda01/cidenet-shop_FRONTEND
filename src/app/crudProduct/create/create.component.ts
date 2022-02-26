@@ -1,13 +1,12 @@
 import Swal from 'sweetalert2';
 import { Product } from 'src/app/product';
-import { CustomResponse } from './../../custom-response';
 import { debounceTime } from 'rxjs/operators';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../product.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductColor } from './../../product';
-import { DomSanitizer } from '@angular/platform-browser';
+import { CustomResponse } from 'src/app/custom-response';
 
 @Component({
   selector: 'app-create',
@@ -20,13 +19,15 @@ export class CreateComponent implements OnInit {
   public colors: ProductColor[] = [];
   public productColor: ProductColor[] = [];
   public newProduct: Product = new Product;
-  public images: any  = [];
-  public previewImg: string = '';
 
-  constructor(private productService: ProductService, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer) { 
+  constructor(private productService: ProductService, 
+    private router: Router, 
+    private formBuilder: FormBuilder,
+    private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.editProduct();
     this.getAllColors();
     this.form = this.formBuilder.group({
       category: [''],
@@ -38,100 +39,78 @@ export class CreateComponent implements OnInit {
       brand: [''],
       size: [''],
       stock: [''],
+      idProduct: ['']
     });
 
     this.form.valueChanges
-    .pipe(
-      debounceTime(1000)
-    )
-    .subscribe(value => {
-      console.log(value);
-      console.log(this.colors);
-    }); 
-}
+      .pipe(
+        debounceTime(1000)
+      );
+  }
 
-public formGet(param:any) {
-  return this.form.get(param);
-}
+  public formGet(param: any) {
+    return this.form.get(param);
+  }
 
-public validForm(param:any) {
-  return this.formGet(param)!.touched && this.formGet(param)!.valid;
-}
+  public validForm(param: any) {
+    return this.formGet(param)!.touched && this.formGet(param)!.valid;
+  }
 
-public invalidForm(param:any) {
-  return this.formGet(param)!.touched && this.formGet(param)!.invalid;
-}
+  public invalidForm(param: any) {
+    return this.formGet(param)!.touched && this.formGet(param)!.invalid;
+  }
 
-createProduct(): void {
-  const value = this.form.value;
-  this.newProduct = value;
-  this.productColor.push({
-    idColor: value.idColor, nameColor:''
-  })
-  this.newProduct.idColor = this.productColor;
-  this.productService.create(this.newProduct).subscribe((res)=>{
-    Swal.fire({
-      icon: 'success',
-      title: '¡Hecho!',
-      text: 'Producto creado correctamente'
-  })
-    this.router.navigate(["/shop"])
-  });
-}
-
-getAllColors(){
-  this.productService.getAllColors().subscribe((res:any)=>{
-    this.colors = res;
-  });
-}
-
-// Getter method to access formcontrols
-get getIdColor() {
-  return this.
-  form.get('idColor');
-}
-
-captureImg(event: any) {
-  const getImages = event.target.files[0];
-  const valuePicture = this.formGet('picture')?.value;
-  this.blobFile(getImages).then((picture: any) => {
-    this.previewImg = picture.base;
-    console.log(picture);
-    
-  })
-  this.images.push(getImages);
-  //console.log(event.target.files);
-}
-
-//turn img to 64 base
-blobFile = async ($event: any) => new Promise((resolve, reject) => {
-  try {
-    const unsafeImg = window.URL.createObjectURL($event);
-    const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
-    const reader = new FileReader();
-    reader.readAsDataURL($event);
-    reader.onload = () => {
-      resolve({
-        blob: $event,
-        image,
-        base: reader.result
-      });
-    };
-    reader.onerror = error => {
-      resolve({
-        blob: $event,
-        image,
-        base: null
-      });
-    };
-
-  } catch (e) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Lo sentimos, hubo un error al cargar la imagen seleccionada',
+  createProduct(): void {
+    const value = this.form.value;
+    this.newProduct = value;
+    this.productColor.push({
+      idColor: value.idColor, nameColor: ''
+    })
+    this.newProduct.idColor = this.productColor;
+    this.productService.create(this.newProduct).subscribe((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Hecho!',
+        text: 'Producto creado correctamente'
+      })
+      this.router.navigate(["/shop"])
     });
   }
-})
+
+  getAllColors() {
+    this.productService.getAllColors().subscribe((res: any) => {
+      this.colors = res;
+    });
+  }
+
+  get getIdColor() {
+    return this.
+      form.get('idColor');
+  }
+
+  editProduct():void{
+    this.activatedRoute.params.subscribe(
+      e=>{
+        let idProduct=e['idProduct'];
+        if(idProduct){
+          this.productService.getById(idProduct).subscribe(
+            (res: CustomResponse)=>{this.newProduct=res.object_response[0];
+            this.form.setValue({category: this.newProduct.category, 
+              name: this.newProduct.name, 
+              price: this.newProduct.price, 
+              description: this.newProduct.description,
+              picture: this.newProduct.picture,
+              idColor: this.newProduct.idColor[0].idColor,
+              brand: this.newProduct.brand,
+              size: this.newProduct.size,
+              stock: this.newProduct.stock,
+              idProduct: this.newProduct.idProduct
+            })
+            }
+          );
+        }
+      }
+    )
+  }
 }
 

@@ -12,17 +12,17 @@
     <div class="cart-list">
       <!-- Single Cart Item -->
       <div class="single-cart-item" *ngFor="let product of (myCart$ | async)">
-        <div >
+        <div>
           <span class="product-remove"><i (click)="deleteCart(product)" class="fa fa-close"
               aria-hidden="true"></i></span>
         </div>
-        <a routerLink="/productDetails/{{product.idProduct}}" class="product-image">
+        <a routerLink="/productDetails/{{product.idProduct}}" class="product-image" style = "justify-content: space-between">
           <img src="{{product.picture}}" class="cart-thumb" alt="">
           <!-- Cart Item Desc -->
           <div class="cart-item-desc">
             <span class="badge">{{product.brand}}</span>
             <h6>{{product.name}}</h6>
-            <p>cantidad={{product.units}}</p>
+            <p>Cantidad= {{product.units}}</p>
             <p class="size">{{product.size}}</p>
             <p class="color">{{product.idColor[0].nameColor}}</p>
             <p class="price">$ {{product.price}}</p>

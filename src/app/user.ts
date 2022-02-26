@@ -7,4 +7,6 @@ export class User {
     email: String = '';
     password: String = '';
     confirmPass: String = '';
+    userType: Number = 0;
+    address: String = ''
 }

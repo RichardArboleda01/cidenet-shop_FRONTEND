@@ -62,13 +62,14 @@
 .btnRegister{
     float: right;
     margin-top: 10%;
+    margin-left: 58%;
     border: none;
     border-radius: 1.5rem;
     padding: 3%;
     background: #113CFC;
     color: #fff;
     font-weight: 600;
-    width: 50%;
+    width: 40%;
     cursor: pointer;
     transition: 0.3s;
 }

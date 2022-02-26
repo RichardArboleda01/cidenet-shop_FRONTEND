@@ -28,6 +28,7 @@ export class StoreService implements OnInit {
 
   constructor(private cartService: ShoppingCartService, private router: Router, private loginClient: LoginClientService, private localStorage: LocalstorageService) {
     this.validateUserLogin();
+    this.getLocalStorage();
   }
 
   ngOnInit(): void {
@@ -38,50 +39,76 @@ export class StoreService implements OnInit {
   }
 
   addProductToCart(product: Product) {
-
     this.listChange = this.myList.filter(function (i) { return i.idProduct == product.idProduct });
     var productChange = this.listChange[0];
+    console.log(productChange, this.myList);
     if (productChange !== undefined) {
-      this.myList = this.myList.filter(function (i) { return i.idProduct !== product.idProduct })
+      if (product.stock - productChange.units >= 0) {
+        this.myList = this.myList.filter(function (i) { return i.idProduct !== product.idProduct })
 
-      this.myList.push(productChange);
+        product.stock -= 1;
+        productChange.units += 1;
+        this.myList.push(productChange);
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Lo sentimos, ya tienes en carrito el tope de stock',
+        })
+      }
     } else {
+      product.units += 1;
+      product.stock -= 1;
       this.myList.push(product);
     }
     this.myCart.next(this.myList);
     this.totalPrice += product.price;
     this.finalTotalPrice.next(this.totalPrice);
     this.finalShoppingCart.cartProduct = this.myList;
-    // this.finalShoppingCart.total = this.totalPrice;
-    // this.finalShoppingCart.userBuy = this.userBuy;
-    //this.localStorage.set("cart", this.finalShoppingCart)
+    this.finalShoppingCart.total = this.totalPrice;
+    this.localStorage.set("cart", this.finalShoppingCart)
   }
 
   deleteCart(product: Product) {
     this.myList = this.myList.filter(function (i) { return i.idProduct !== product.idProduct })
     this.myCart.next(this.myList);
-    this.totalPrice -= product.price * product.units;
+    this.totalPrice -= product.price * product.units; console.log(product.units);
     product.stock += product.units;
     product.units = 0;
     this.finalTotalPrice.next(this.totalPrice);
     this.finalShoppingCart.cartProduct = this.myList;
-    // this.finalShoppingCart.total = this.totalPrice;
-    // this.finalShoppingCart.userBuy = this.userBuy;
-    //this.localStorage.set("cart", this.finalShoppingCart)
+    this.finalShoppingCart.total = this.totalPrice;
+    this.localStorage.set("cart", this.finalShoppingCart)
   }
 
-  saveCart() {
+  saveCart(userConfirm: User) {
     if (this.finalShoppingCart.cartProduct.length > 0) {
       this.finalShoppingCart.cartProduct = this.myList;
       this.finalShoppingCart.total = this.totalPrice;
-      this.finalShoppingCart.userBuy = this.userBuy;
-      this.cartService.create(this.finalShoppingCart).subscribe((res: CustomResponse) => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Productos añadidos al carrito',
-          text: '¡Falta poco para que te los lleves!'
-        })
-        this.router.navigate(['/yourOrder/confirmOrder']);
+      this.finalShoppingCart.userBuy = userConfirm;
+      Swal.fire({
+        title: 'Auto close alert!',
+        html: 'I will close in <b></b> milliseconds.',
+        timer: 10000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading()
+          this.cartService.create(this.finalShoppingCart).subscribe((res: CustomResponse) => {
+          this.router.navigate(['/home']);
+            console.log('holaaaaaaaa');
+            
+          })
+        },
+        willClose: () => {
+          clearInterval()
+          this.localStorage.remove('cart');
+          window.location.reload();
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
       })
     } else {
       Swal.fire({
@@ -103,5 +130,12 @@ export class StoreService implements OnInit {
       this.finalShoppingCart = new ShoppingCart;
       this.myCart.next(this.finalShoppingCart.cartProduct);
     }
+  }
+
+  saveCartLocalStorage() {
+    this.finalShoppingCart.cartProduct = this.myList;
+    this.finalShoppingCart.total = this.totalPrice;
+    this.localStorage.set("cart", this.finalShoppingCart);
+
   }
 }

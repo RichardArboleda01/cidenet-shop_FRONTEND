@@ -26,44 +26,16 @@
             <h5>Recibo de compra</h5>
           </div>
 
-          <form action="#" method="post">
+
+          <form (ngSubmit)="endShopping()" [formGroup]="form" novalidate>
             <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="first_name">Nombre <span>*</span></label>
-                <input type="text" class="form-control" id="first_name" value="" required>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="last_name">Apellido <span>*</span></label>
-                <input type="text" class="form-control" id="last_name" value="" required>
-              </div>
               <div class="col-12 mb-3">
-                <label for="country">Pais<span>*</span></label>
-                <select class="w-100" id="country">
-                  <option value="usa">United States</option>
-                  <option value="uk">United Kingdom</option>
-                  <option value="ger">Germany</option>
-                  <option value="fra">France</option>
-                  <option value="ind">India</option>
-                  <option value="aus">Australia</option>
-                  <option value="bra">Brazil</option>
-                  <option value="cana">Canada</option>
-                </select>
-              </div>
-              <div class="col-12 mb-3">
-                <label for="street_address">Direccion de Residencia <span>*</span></label>
-                <input type="text" class="form-control mb-3" id="street_address" value="">
-              </div>
-              <div class="col-12 mb-3">
-                <label for="city">Ciudad <span>*</span></label>
-                <input type="text" class="form-control" id="city" value="">
-              </div>
-              <div class="col-12 mb-3">
-                <label for="phone_number">Celular<span>*</span></label>
-                <input type="number" class="form-control" id="phone_number" min="0" value="">
+                <label for="street_address">Direccion de Residencia<span>*</span></label>
+                <input type="text" class="form-control mb-3" id="street_address" value="" formControlName="address">
               </div>
               <div class="col-12 mb-4">
-                <label for="email_address">Email <span>*</span></label>
-                <input type="email" class="form-control" id="email_address" value="">
+                <label for="email_address">Email<span>*</span></label>
+                <input type="email" class="form-control" formControlName="email">
               </div>
 
               <div class="col-12">
@@ -88,25 +60,28 @@
           <ul class="order-details-form mb-4">
             <li><span>Tus productos</span> <span>Total</span></li>
             <li>
-                <div class="single-cart-item">
-                    <div >
-                      <span class="product-remove"></span>
-                    </div>
-                    <a class="product-image">
-                      <!-- Cart Item Desc -->
-                      <div class="cart-item-desc" *ngFor="let product of (myCart$ | async)">
-                        <span class="badge"><h6>{{product.name}} - {{product.brand}}</h6></span>
-                        <p>Unidades: {{product.units}} -------- Talla: {{product.size}}<br> Color: {{product.idColor[0].nameColor}} -------- Precio: ${{product.price}}</p>
-                      </div>
-                    </a>
+              <div class="single-cart-item">
+                <div>
+                  <span class="product-remove"></span>
+                </div>
+                <a class="product-image">
+                  <!-- Cart Item Desc -->
+                  <div class="cart-item-desc" *ngFor="let product of (myCart$ | async)">
+                    <span class="badge">
+                      <h6>{{product.name}} - {{product.brand}}</h6>
+                    </span>
+                    <p>Unidades: {{product.units}} -------- Talla: {{product.size}}<br> Color:
+                      {{product.idColor[0].nameColor}} -------- Precio: ${{product.price}}</p>
                   </div>
+                </a>
+              </div>
             </li>
             <li><span>Subtotal</span> <span>$ {{(finalPrice$ | async)}}</span></li>
             <li><span>Envio</span> <span>Free</span></li>
             <li><span>Total</span> <span>$ {{(finalPrice$ | async)}}</span></li>
           </ul>
 
-          <button (click)="endShopping()" class="btn essence-btn">Finalizar compra</button>
+          <button (click)="endShopping()" type="submit" class="btn essence-btn">Finalizar compra</button>
         </div>
       </div>
     </div>

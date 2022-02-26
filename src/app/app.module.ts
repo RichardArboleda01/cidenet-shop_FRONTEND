@@ -41,7 +41,8 @@ const routes:Routes=[
   { path: 'home/:idClient', component: HomeComponent},
   { path: 'yourOrder/confirmOrder', component: ConfirmOrderComponent},
   { path: 'panelAdmin/controlAdmin', component: ControlAdminComponent},
-  { path: 'crudProduct/edit', component: EditComponent}
+  { path: 'crudProduct/edit', component: EditComponent},
+  { path: 'create/:idProduct', component: CreateComponent }
 
 ]
 

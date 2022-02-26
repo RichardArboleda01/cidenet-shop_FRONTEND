@@ -74,8 +74,6 @@ export class AllProductsComponent implements OnInit {
 
   addProductToCart(product: Product) {
     if (product.stock > 0) {
-      product.stock -= 1;
-      product.units += 1;
       this.store.addProductToCart(product);
     } else {
       Swal.fire({

@@ -1,6 +1,7 @@
+import { ShoppingCart } from './../../appEntity/shoppingCart';
 import { Product } from './../../product';
 import { ShoppingCartService } from './../../appService/shoppingCart.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from 'src/app/observablesService/store.service';
 
@@ -29,7 +30,8 @@ export class CreateCartComponent implements OnInit {
   }
 
   saveCart() {
-    this.store.saveCart();
+    this.store.saveCartLocalStorage();
+    this.router.navigate(['/yourOrder/confirmOrder']);
   }
 
 }
