@@ -4,7 +4,7 @@
      <div class="row h-100 align-items-center">
        <div class="col-12">
          <div class="page-title text-center">
-           <h2>dresses</h2>
+           <h2>TIENDA</h2>
          </div>
        </div>
      </div>
@@ -83,25 +83,18 @@
                </ul>
              </div>
            </div>
-           <!-- ##### Single Widget ##### -->
-           <div class="widget brands mb-50">
-             <!-- Widget Title 2 -->
-             <p class="widget-title2 mb-30">Filtrar por marca</p>
-             <div class="widget-desc">
-               <ul>
-                 <li><a href="#">Asos</a></li>
-                 <li><a href="#">Mango</a></li>
-                 <li><a href="#">River Island</a></li>
-                 <li><a href="#">Topshop</a></li>
-                 <li><a href="#">Zara</a></li>
-               </ul>
-             </div>
-           </div>
          </div>
        </div>
 
        <div class="col-12 col-md-8 col-lg-9">
          <div class="shop_grid_product_area">
+           <!-- Search Area -->
+           <div class="search-area">
+             <form action="#" method="post" class="example">
+               <input type="text" name="filterProducts" id="headerSearch" placeholder="Escribe para buscar..."  [(ngModel)]="filterProducts">
+               <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+             </form>
+           </div>
            <div class="row">
              <div class="col-12">
                <div class="product-topbar d-flex align-items-center justify-content-between">
@@ -110,34 +103,18 @@
                    <p *ngIf="userActive==true"><span>{{products.length}}</span> Productos encontrados para
                      {{loguedUser.firstName}}</p>
                    <p *ngIf="userActive==false"><span>{{products.length}}</span> Productos encontrados</p>
-                 </div>
-                 <!-- Sorting -->
-                 <div class="product-sorting d-flex">
-                   <p>Sort by:</p>
-                   <form action="#" method="get">
-                     <select name="select" id="sortByselect">
-                       <option value="value">Highest Rated</option>
-                       <option value="value">Newest</option>
-                       <option value="value">Price: $$ - $</option>
-                       <option value="value">Price: $ - $$</option>
-                     </select>
-                     <input type="submit" class="d-none" value="">
-                   </form>
-                 </div>
+                 </div>>
                </div>
              </div>
            </div>
            <div class="row">
-             <ng-container *ngFor="let product of products">
+             <ng-container *ngFor="let product of products | filter: filterProducts">
                <!-- Single Product -->
                <div class="col-12 col-sm-6 col-lg-4">
                  <div class="single-product-wrapper">
                    <!-- Product Image -->
                    <div class="product-img">
                      <img src="{{product.picture}}" alt="">
-                     <!-- Hover Thumb -->
-                     <!-- <img class="hover-img" src="../../../../assets/img/product-img/product-3.jpg" alt=""> -->
-
                      <!-- Favourite -->
                      <div class="product-favourite">
                        <a href="#" class="favme fa fa-heart"></a>

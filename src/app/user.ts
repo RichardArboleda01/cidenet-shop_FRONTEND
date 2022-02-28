@@ -7,6 +7,11 @@ export class User {
     email: String = '';
     password: String = '';
     confirmPass: String = '';
-    userType: Number = 0;
+    userType: Usertype[]= [new Usertype];
     address: String = ''
+}
+
+export class Usertype {
+    idRole: number = 1;
+    roleType: String = '';
 }

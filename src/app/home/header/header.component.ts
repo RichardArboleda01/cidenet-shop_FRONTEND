@@ -1,3 +1,4 @@
+import { Product } from './../../product';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { User } from './../../user';
@@ -10,6 +11,7 @@ import { StoreService } from 'src/app/observablesService/store.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit{
+public products: Product[] = [];
  myCart$ = this.store.myCart$;
  loguedUser: User = new User;
  userActive: Boolean = false;
@@ -25,7 +27,9 @@ export class HeaderComponent implements OnInit{
     this.validateClientOn();
     this.validateUserLogin();
   }
-  
+
+  filterProducts = '';
+
   validateUserLogin() {
     this.loguedUser = this.loginClient.getInfoClient();
   }

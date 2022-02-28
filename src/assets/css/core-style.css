@@ -365,6 +365,11 @@ ol {
       color: #787878;
       font-size: 14px; }
       @media only screen and (max-width: 767px) {
+        .user-login-info {
+          left: 10px;
+          height: 40px;
+        margin-top: -14%; } }
+      @media only screen and (max-width: 767px) {
         .header_area .search-area form button {
           left: 10px;
           height: 40px; } }
@@ -390,7 +395,7 @@ ol {
         -ms-flex: 0 0 50px;
         flex: 0 0 50px;
         width: 50px;
-        line-height: 40px; } }
+        line-height: 20px; } }
     .header_area .favourite-area a img,
     .header_area .user-login-info a img,
     .header_area .cart-area a img {

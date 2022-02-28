@@ -1,3 +1,4 @@
+import { FilterPipe } from './pipes/filter.pipe';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,7 +28,7 @@ import { ConfirmOrderComponent } from './yourOrder/confirm-order/confirm-order.c
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GetCartComponent } from './shoppingCart/get-cart/get-cart.component';
 import { ControlAdminComponent } from './panelAdmin/control-admin/control-admin.component';
-import { EditComponent } from './crudProduct/edit/edit.component';
+
 const routes:Routes=[
   { path: '', component: HomeComponent, pathMatch: 'full'},
   { path: 'home', component: HomeComponent},
@@ -41,7 +42,6 @@ const routes:Routes=[
   { path: 'home/:idClient', component: HomeComponent},
   { path: 'yourOrder/confirmOrder', component: ConfirmOrderComponent},
   { path: 'panelAdmin/controlAdmin', component: ControlAdminComponent},
-  { path: 'crudProduct/edit', component: EditComponent},
   { path: 'create/:idProduct', component: CreateComponent }
 
 ]
@@ -69,7 +69,7 @@ const routes:Routes=[
     ConfirmOrderComponent,
     GetCartComponent,
     ControlAdminComponent,
-    EditComponent
+    FilterPipe
 
   ],
   imports: [

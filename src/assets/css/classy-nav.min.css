@@ -73,6 +73,12 @@ img {
     font-size: 250%;
     font-weight: 500;
 }
+@media only screen and (max-width: 767px) {
+    .nav-brand {
+      margin-left: 10px;
+      margin-right: 15px;
+      width: 18%; 
+    margin-top: 30px;} }
 
 .classy-nav-container.classy-sticky {
     position: fixed;

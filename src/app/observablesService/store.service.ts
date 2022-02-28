@@ -94,14 +94,13 @@ export class StoreService implements OnInit {
         didOpen: () => {
           Swal.showLoading()
           this.cartService.create(this.finalShoppingCart).subscribe((res: CustomResponse) => {
-          this.router.navigate(['/home']);
-            console.log('holaaaaaaaa');
-            
           })
         },
         willClose: () => {
           clearInterval()
+          
           this.localStorage.remove('cart');
+          this.router.navigate(['/home']);
           window.location.reload();
         }
       }).then((result) => {

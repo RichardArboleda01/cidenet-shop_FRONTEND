@@ -41,7 +41,6 @@ export class BodyProductComponent implements OnInit {
 
   changeColor(e:any) {
     this.idColorTest = e
-   
   }
 
   addProductToCart() {

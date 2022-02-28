@@ -45,6 +45,9 @@ public invalidForm(param:any) {
   return this.formGet(param)!.touched && this.formGet(param)!.invalid;
 }
 
+  /**
+   * It validates the form and if the form is valid it will call the loginClient function.
+   */
   loginUser():void{
     const valueEmail = this.formGet('email')?.value;
     const valuePassword = this.formGet('password')?.value;

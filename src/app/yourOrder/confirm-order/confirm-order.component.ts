@@ -39,7 +39,11 @@ export class ConfirmOrderComponent implements OnInit {
   this.form.valueChanges
   .pipe(
     debounceTime(1000)
-  )}
+    
+  ).subscribe(value=> {
+    console.log(value);
+    
+  })}
 
   infoUser() {
     this.form.setValue({email: this.user.email, address: ''

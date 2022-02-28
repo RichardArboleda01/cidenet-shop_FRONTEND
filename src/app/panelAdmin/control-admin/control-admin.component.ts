@@ -27,13 +27,13 @@ export class ControlAdminComponent implements OnInit {
 
   deleteProductById(idProduct: number) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: 'Estas seguro de eliminar este articulo?',
+      text: "¡No podras revertir los cambios!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Si, eliminarlo!'
     }).then((result) => {
       if (result.isConfirmed) {
         this.productService.delete(idProduct).subscribe((res: CustomResponse) => {

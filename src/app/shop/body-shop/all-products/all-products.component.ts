@@ -19,6 +19,7 @@ export class AllProductsComponent implements OnInit {
   public productCount: number = 0;
   loguedUser: User = new User;
   userActive: Boolean = false;
+  isAdmin: Boolean = false;
 
   constructor(private productService: ProductService,
     private router: Router,
@@ -30,9 +31,10 @@ export class AllProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductByCategory();
-    this.validateClientOn();
     this.validateUserLogin();
   }
+
+  filterProducts = '';
 
   getAllProduct() {
     this.productService.getAll().subscribe((res: CustomResponse) => {
@@ -86,10 +88,8 @@ export class AllProductsComponent implements OnInit {
 
   validateUserLogin() {
     this.loguedUser = this.loginClient.getInfoClient();
-  }
-
-  validateClientOn() {
     this.userActive = this.loginClient.getValidateClientOn();
+    this.isAdmin = this.loginClient.getInfoAdmin();
   }
 
   clientNotLogued() {

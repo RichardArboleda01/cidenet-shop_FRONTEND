@@ -26,6 +26,13 @@ export class ProductService {
       );
   }
 
+  getMustPurchase(){
+    return this.http.get<CustomResponse>(this.url+`/getMostPurchase`)
+    .pipe(map(resp => resp),
+        catchError(this.error)
+      );
+  }
+
   getAllColors(){
     return this.http.get<ProductColor>("http://localhost:8080/api/color/getAll")
     .pipe(map(resp => resp),
