@@ -1,11 +1,11 @@
 import Swal from 'sweetalert2';
-import { Product } from 'src/app/product';
+import { Product } from 'src/app/appEntity/product';
 import { debounceTime } from 'rxjs/operators';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../product.service';
 import { Component, OnInit } from '@angular/core';
-import { ProductColor } from './../../product';
+import { ProductColor } from '../../appEntity/product';
 import { CustomResponse } from 'src/app/custom-response';
 
 @Component({
@@ -88,6 +88,7 @@ export class CreateComponent implements OnInit {
       form.get('idColor');
   }
 
+  /* Getting the product by its id and setting the form values to the product. */
   editProduct():void{
     this.activatedRoute.params.subscribe(
       e=>{

@@ -1,3 +1,9 @@
+body {
+    background-image: url("https://fondosmil.com/fondo/31308.jpg");
+    display: inline;
+    margin: auto;
+    background-size: 1350px 800px;
+}
 .register{
     background: -webkit-linear-gradient(left, #3931af, #00c6ff);
     margin-top: 1%;

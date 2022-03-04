@@ -2,7 +2,7 @@ import { LocalstorageService } from './../../../appService/localstorage.service'
 import { LoginClientService } from './../../../observablesService/loginClient.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './../../../user.service';
-import { User } from './../../../user';
+import { User } from '../../../appEntity/user';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

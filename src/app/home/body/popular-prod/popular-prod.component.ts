@@ -2,11 +2,10 @@ import { CustomResponse } from './../../../custom-response';
 import { ProductService } from './../../../product.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { User } from './../../../user';
+import { User } from '../../../appEntity/user';
 import { LoginClientService } from './../../../observablesService/loginClient.service';
-import { AllProductsComponent } from './../../../shop/body-shop/all-products/all-products.component';
 import { StoreService } from 'src/app/observablesService/store.service';
-import { Product } from './../../../product';
+import { Product } from '../../../appEntity/product';
 import { Component } from '@angular/core';
 
 @Component({

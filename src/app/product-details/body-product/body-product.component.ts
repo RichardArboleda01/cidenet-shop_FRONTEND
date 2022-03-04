@@ -1,6 +1,6 @@
 import { StoreService } from 'src/app/observablesService/store.service';
 import { CustomResponse } from './../../custom-response';
-import { Product, ProductColor } from 'src/app/product';
+import { Product, ProductColor } from 'src/app/appEntity/product';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../product.service';

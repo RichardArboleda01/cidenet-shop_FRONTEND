@@ -2,7 +2,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './../user.service';
 import { CustomResponse } from './../custom-response';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user';
+import { User } from '../appEntity/user';
 
 @Component({
   selector: 'app-home',

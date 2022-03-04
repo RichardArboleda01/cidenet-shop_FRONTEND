@@ -1,13 +1,10 @@
 import { LocalstorageService } from './../appService/localstorage.service';
 import { UserService } from './../user.service';
 import { Router } from '@angular/router';
-import { ShoppingCartService } from './../appService/shoppingCart.service';
-import { ShoppingCart } from './../appEntity/shoppingCart';
 import Swal from 'sweetalert2';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Product } from './../product';
-import { User } from '../user';
+import { User } from '../appEntity/user';
 
 @Injectable({
     providedIn: 'root'
@@ -38,8 +35,6 @@ export class LoginClientService {
             this.clientLogued = res;
             this.localStorage.set("client", res)
             console.log(this.clientLogued);
-            
-            //this.validateIsAdmin();
             this.router.navigate(['/home']);
         }); console.log(this.isAdmin);
         
@@ -52,7 +47,6 @@ export class LoginClientService {
             this.clientLogued = this.localStorage.get("client");
             this.clientOn.next(this.clientLogued);
             this.validateClientOn = true; 
-            //this.validateIsAdmin();    
         } else {
             this.clientLogued = null!;
             this.clientOn.next(this.clientLogued);
@@ -66,7 +60,6 @@ export class LoginClientService {
     }
 
     getInfoAdmin() {
-        //this.validateIsAdmin();
         return this.isAdmin;   
     }
 
@@ -75,12 +68,6 @@ export class LoginClientService {
         this.validateClientOn = false;
         this.clientLogued = new User;
         this.clientOn.next(this.clientLogued);
-        //this.validateIsAdmin();
         window.location.reload();
     }
-    /*validateIsAdmin() {
-            if (this.clientLogued.userType[0].idRole == 2) {
-                this.isAdmin = true;     
-            }
-    } */
 }

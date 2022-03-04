@@ -1,5 +1,5 @@
 import { LocalstorageService } from './../appService/localstorage.service';
-import { User } from './../user';
+import { User } from '../appEntity/user';
 import { LoginClientService } from './loginClient.service';
 import { Router } from '@angular/router';
 import { ShoppingCartService } from './../appService/shoppingCart.service';
@@ -7,7 +7,7 @@ import { ShoppingCart } from './../appEntity/shoppingCart';
 import Swal from 'sweetalert2';
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, observable } from 'rxjs';
-import { Product } from './../product';
+import { Product } from '../appEntity/product';
 import { CustomResponse } from '../custom-response';
 
 @Injectable({
@@ -26,7 +26,11 @@ export class StoreService implements OnInit {
   cantidad: number = 0;
   private userBuy: User = new User;
 
-  constructor(private cartService: ShoppingCartService, private router: Router, private loginClient: LoginClientService, private localStorage: LocalstorageService) {
+  constructor(private cartService: ShoppingCartService,
+    private router: Router,
+    private loginClient: LoginClientService, 
+    private localStorage: LocalstorageService)
+    {
     this.validateUserLogin();
     this.getLocalStorage();
   }
@@ -38,10 +42,13 @@ export class StoreService implements OnInit {
     this.userBuy = this.loginClient.getInfoClient();
   }
 
+ /**
+  * Add a product to the shopping cart
+  * @param {Product} product - The product that will be added to the cart.
+  */
   addProductToCart(product: Product) {
     this.listChange = this.myList.filter(function (i) { return i.idProduct == product.idProduct });
     var productChange = this.listChange[0];
-    console.log(productChange, this.myList);
     if (productChange !== undefined) {
       if (product.stock - productChange.units >= 0) {
         this.myList = this.myList.filter(function (i) { return i.idProduct !== product.idProduct })
@@ -72,7 +79,7 @@ export class StoreService implements OnInit {
   deleteCart(product: Product) {
     this.myList = this.myList.filter(function (i) { return i.idProduct !== product.idProduct })
     this.myCart.next(this.myList);
-    this.totalPrice -= product.price * product.units; console.log(product.units);
+    this.totalPrice -= product.price * product.units;
     product.stock += product.units;
     product.units = 0;
     this.finalTotalPrice.next(this.totalPrice);
@@ -87,8 +94,8 @@ export class StoreService implements OnInit {
       this.finalShoppingCart.total = this.totalPrice;
       this.finalShoppingCart.userBuy = userConfirm;
       Swal.fire({
-        title: 'Auto close alert!',
-        html: 'I will close in <b></b> milliseconds.',
+        title: 'Estamos procesando tu compra!',
+        html: 'Esperanos un momento... <b></b>',
         timer: 10000,
         timerProgressBar: true,
         didOpen: () => {

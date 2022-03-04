@@ -1,10 +1,10 @@
 import { CustomResponse } from './../custom-response';
-import { Product, ProductColor } from './../product';
+import { Product, ProductColor } from '../appEntity/product';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { User } from './../user';
+import { User } from '../appEntity/user';
 import { ShoppingCart } from '../appEntity/shoppingCart';
 
 @Injectable({

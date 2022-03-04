@@ -1,7 +1,7 @@
-import { Product } from './../../product';
+import { Product } from '../../appEntity/product';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { User } from './../../user';
+import { User } from '../../appEntity/user';
 import { LoginClientService } from './../../observablesService/loginClient.service';
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from 'src/app/observablesService/store.service';
@@ -28,6 +28,7 @@ public products: Product[] = [];
     this.validateUserLogin();
   }
 
+  /* A filter to search products using pipe filter. */
   filterProducts = '';
 
   validateUserLogin() {

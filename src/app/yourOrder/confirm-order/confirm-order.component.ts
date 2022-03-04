@@ -2,9 +2,9 @@ import { LoginClientService } from './../../observablesService/loginClient.servi
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import Swal from 'sweetalert2';
-import { User } from './../../user';
+import { User } from '../../appEntity/user';
 import { StoreService } from 'src/app/observablesService/store.service';
-import { Product } from './../../product';
+import { Product } from '../../appEntity/product';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -64,6 +64,9 @@ export class ConfirmOrderComponent implements OnInit {
     return this.formGet(param)!.touched && this.formGet(param)!.invalid;
   }
 
+ /**
+  * Save the user's email and address to the cart
+  */
   endShopping() {
     this.user.email = this.form.get('email')?.value;
     this.user.address = this.form.get('address')?.value;

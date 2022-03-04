@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import { User } from './../../../user';
+import { User } from '../../../appEntity/user';
 import { LoginClientService } from './../../../observablesService/loginClient.service';
 import { StoreService } from './../../../observablesService/store.service';
 import { CustomResponse } from './../../../custom-response';
@@ -7,7 +7,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../../product.service';
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/product';
+import { Product } from 'src/app/appEntity/product';
 
 @Component({
   selector: 'app-all-products',

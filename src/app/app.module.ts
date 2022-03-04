@@ -26,7 +26,6 @@ import { CreateComponent } from './crudProduct/create/create.component';
 import { CreateCartComponent } from './shoppingCart/create-cart/create-cart.component';
 import { ConfirmOrderComponent } from './yourOrder/confirm-order/confirm-order.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GetCartComponent } from './shoppingCart/get-cart/get-cart.component';
 import { ControlAdminComponent } from './panelAdmin/control-admin/control-admin.component';
 
 const routes:Routes=[
@@ -67,7 +66,6 @@ const routes:Routes=[
     CreateComponent,
     CreateCartComponent,
     ConfirmOrderComponent,
-    GetCartComponent,
     ControlAdminComponent,
     FilterPipe
 

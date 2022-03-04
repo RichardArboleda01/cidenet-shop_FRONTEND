@@ -1,5 +1,5 @@
-import { User } from './../user';
-import { Product } from 'src/app/product';
+import { User } from './user';
+import { Product } from 'src/app/appEntity/product';
 export class ShoppingCart {
 
     idCart: number = 0;

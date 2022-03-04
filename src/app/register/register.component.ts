@@ -1,11 +1,10 @@
 import Swal from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../user';
+import { User } from '../appEntity/user';
 import { UserService } from '../user.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
-import {passwordMatchValidator } from './myvalidation';
 
 
 

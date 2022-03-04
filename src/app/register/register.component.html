@@ -4,246 +4,232 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
 <!------ Include the above in your HEAD tag ---------->
-
+<body>
 <form (ngSubmit)="registerUser()" [formGroup]="form" novalidate>
-    <div class="container register">
-        <div class="row">
-            <div class="col-md-3 register-left">
-                <a [routerLink]="['/home']"><img src="https://www.cidenet.com.co/wp-content/uploads/2021/04/cidenet-software-a-la-medida-medellin.png"
-                    alt="" /></a>
-                <h4>¡Bienvenido a Cidenet Shop!</h4>
-                <p><b>Comienza a ver nuestro catálogo.</b><br><b>¡Te encantará!</b></p>
-                <p><b>¿Ya estas registrado? Presiona el boton <br>"Iniciar Sesión"</b></p>
-                <input routerLink="/login" type="submit" name="" value="Iniciar Sesión" /><br />
-            </div>
-            <div class="col-md-9 register-right">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading">Crear una cuenta</h3>
-                        <div class="row register-form">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label class="label">Nombre</label>
-                                    <div class="control has-icons-left has-icons-right">
-                                        <input type="text" class="input" [class.is-success]="validForm('firstName')"
-                                            [class.is-danger]="invalidForm('firstName')" formControlName="firstName" />
-                                        <div class="form-error"
-                                            *ngIf="formGet('firstName')!.errors && formGet('firstName')!.touched">
-                                            <p *ngIf="formGet('firstName')!.hasError('required')"
-                                                class="help is-danger">
-                                                Introduce tu nombre
-                                            </p>
-                                            <p *ngIf="formGet('firstName')!.hasError('pattern')"
-                                                class="help is-danger">
-                                                Tu nombre solo debe contener letras.
-                                            </p>
-                                        </div>
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-arrow-right"></i>
-                                        </span>
-                                        <span *ngIf="validForm('firstName')" class="icon is-small is-right">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-                                        <span *ngIf="invalidForm('firstName')" class="icon is-small is-right">
-                                            <i class="fas fa-times"></i>
-                                        </span>
-                                    </div>
-                                    <p *ngIf="validForm('firstName')" class="help is-success"></p>
-                                    <p *ngIf="invalidForm('firstName')" class="help is-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <label class="label">Apellido</label>
-                                    <div class="control has-icons-left has-icons-right">
-                                        <input type="text" class="input" [class.is-success]="validForm('lastName')"
-                                            [class.is-danger]="invalidForm('lastName')" formControlName="lastName" />
-                                        <div class="form-error"
-                                            *ngIf="formGet('lastName')!.errors && formGet('lastName')!.touched">
-                                            <p *ngIf="formGet('lastName')!.hasError('required')" class="help is-danger">
-                                                Introduce tus apellidos
-                                            </p>
-                                            <p *ngIf="formGet('lastName')!.hasError('pattern')" class="help is-danger">
-                                                Tu nombre solo debe contener letras.
-                                            </p>
-                                        </div>
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-arrow-right"></i>
-                                        </span>
-                                        <span *ngIf="validForm('lastName')" class="icon is-small is-right">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-                                        <span *ngIf="invalidForm('lastName')" class="icon is-small is-right">
-                                            <i class="fas fa-times"></i>
-                                        </span>
-                                    </div>
-                                    <p *ngIf="validForm('lastName')" class="help is-success"></p>
-                                    <p *ngIf="invalidForm('lastName')" class="help is-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <label class="label">Tipo de documento</label>
-                                    <div class="control select has-icons-left has-icons-right">
-                                        <select class="input" [class.is-success]="validForm('idCardType')"
-                                            [class.is-danger]="invalidForm('idCardType')" value=""
-                                            formControlName="idCardType">
-                                            <option value="1">Tarjeta de identidad</option>
-                                            <option value="2">Cedula</option>
-                                            <option value="3">Pasaporte</option>
-                                        </select>
-                                        <div class="form-error"
-                                            *ngIf="formGet('idCardType')!.errors && formGet('idCardType')!.touched">
-                                            <p *ngIf="formGet('idCardType')!.hasError('required')"
-                                                class="help is-danger">
-                                            </p>
-                                        </div>
-                                        <span *ngIf="validForm('idCardType')" class="icon is-small is-left">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-                                        <span *ngIf="invalidForm('idCardType')" class="icon is-small is-left">
-                                            <i class="fas fa-times"></i>
-                                        </span>
-                                    </div>
-                                    <p *ngIf="validForm('idCardType')" class="help is-success"></p>
-                                    <p *ngIf="invalidForm('idCardType')" class="help is-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <label class="label">Número de documento</label>
-                                    <div class="control has-icons-left has-icons-right">
-                                        <input type="text" class="input" [class.is-success]="validForm('idCard')"
-                                            [class.is-danger]="invalidForm('idCard')" formControlName="idCard" />
-                                        <div class="form-error"
-                                            *ngIf="formGet('idCard')!.errors && formGet('idCard')!.touched">
-                                            <p *ngIf="formGet('idCard')!.hasError('required')" class="help is-danger">
-                                                Introduce tu número de documento
-                                            </p>
-                                            <p *ngIf="formGet('idCard')!.hasError('max')" class="help is-danger">
-                                                Superaste el máximo 15 dígitos.
-                                            </p>
-                                            <p *ngIf="formGet('idCard')!.hasError('min')" class="help is-danger">
-                                                Debe contener 7 o más dígitos.
-                                            </p>
-                                            <p *ngIf="formGet('idCard')!.hasError('pattern')" class="help is-danger">
-                                                El ID ingresado debe contener solo numeros
-                                            </p>
-                                        </div>
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-arrow-right"></i>
-                                        </span>
-                                        <span *ngIf="validForm('idCard')" class="icon is-small is-right">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-                                        <span *ngIf="invalidForm('idCard')" class="icon is-small is-right">
-                                            <i class="fas fa-times"></i>
-                                        </span>
-                                    </div>
-                                    <p *ngIf="validForm('idCard')" class="help is-success"></p>
-                                    <p *ngIf="invalidForm('idCard')" class="help is-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <label class="label">E-mail</label>
-                                    <div class="control has-icons-left has-icons-right">
-                                        <input type="text" class="input" placeholder="ejemplo@cidenet.com"
-                                            [class.is-success]="validForm('email')"
-                                            [class.is-danger]="invalidForm('email')" formControlName="email" />
-                                        <div class="form-error"
-                                            *ngIf="formGet('email')!.errors && formGet('email')!.touched">
-                                            <p *ngIf="formGet('email')!.hasError('required')" class="help is-danger">
-                                                Introduce tu email
-                                            </p>
-                                            <p *ngIf="formGet('email')!.hasError('pattern')" class="help is-danger">
-                                                Ingresa un email valido (ejemplo@cidenet.com)
-                                            </p>
-                                        </div>
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-envelope"></i>
-                                        </span>
-                                        <span *ngIf="validForm('email')" class="icon is-small is-right">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-                                        <span *ngIf="invalidForm('email')" class="icon is-small is-right">
-                                            <i class="fas fa-times"></i>
-                                        </span>
-                                    </div>
-                                    <p *ngIf="validForm('email')" class="help is-success"></p>
-                                    <p *ngIf="invalidForm('email')" class="help is-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <label class="label">Contraseña</label>
-                                    <div class="control has-icons-left has-icons-right">
-                                        <input type="password" class="input" [class.is-success]="validForm('password')"
-                                            [class.is-danger]="invalidForm('password')" formControlName="password" />
-                                        <div class="form-error"
-                                            *ngIf="formGet('password')!.errors && formGet('password')!.touched">
-                                            <p *ngIf="formGet('password')!.hasError('required')" class="help is-danger">
-                                                Introduce una contraseña
-                                            </p>
-                                            <p *ngIf="formGet('password')!.hasError('minlength')" class="help is-danger">
-                                                La contraseña debe ser de mínimo 5 o mas dígitos
-                                            </p>
-                                            <p *ngIf="formGet('password')!.hasError('MustMatch')" class="help is-danger">
-                                            Las contraseñas deben ser iguales
-                                        </p>
-                                        </div>
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-lock"></i>
-                                        </span>
-                                        <span *ngIf="validForm('password')" class="icon is-small is-right">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-                                        <span *ngIf="invalidForm('password')" class="icon is-small is-right">
-                                            <i class="fas fa-times"></i>
-                                        </span>
-                                    </div>
-                                    <p *ngIf="validForm('password')" class="help is-success"></p>
-                                    <p *ngIf="invalidForm('password')" class="help is-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <label class="label">Confirmar contraseña</label>
-                                    <div class="control has-icons-left has-icons-right">
-                                        <input type="password" class="input"
-                                            [class.is-success]="validForm('confirmPass')"
-                                            [class.is-danger]="invalidForm('confirmPass')"
-                                            formControlName="confirmPass" />
-                                        <div class="form-error"
-                                            *ngIf="formGet('confirmPass')!.errors && formGet('confirmPass')!.touched">
-                                            <p *ngIf="formGet('confirmPass')!.hasError('required')"
-                                                class="help is-danger">
-                                                Confirma tu contraseña
-                                            </p>
-                                            <p *ngIf="formGet('confirmPass')!.hasError('validPass')"
-                                                class="help is-danger">
-                                                Las contraseñas deben ser iguales
-                                            </p>
-                                        </div>
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-lock"></i>
-                                        </span>
-                                        <span *ngIf="validForm('confirmPass')" class="icon is-small is-right">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-                                        <span *ngIf="invalidForm('confirmPass')" class="icon is-small is-right">
-                                            <i class="fas fa-times"></i>
-                                        </span>
-                                    </div>
-                                    <p *ngIf="validForm('confirmPass')" class="help is-success"></p>
-                                    <p *ngIf="invalidForm('confirmPass')" class="help is-danger"></p>
-                                </div>
-                                <button type="submit" class="btnRegister">Continuar</button>
-                            </div>
-                            <div class="t-and-c">
-                                <p class="p-checkbox">
-                                    <label class="checkbox">
-                                        <input type="checkbox">
-                                        Acepto los <a href="#">términos y condiciones</a>
-                                    </label>
-                                </p>
-                            </div>
-                        </div>
+  <div class="container register">
+    <div class="row">
+      <div class="col-md-3 register-left">
+        <a [routerLink]="['/home']"><img
+            src="https://www.cidenet.com.co/wp-content/uploads/2021/04/cidenet-software-a-la-medida-medellin.png"
+            alt="" /></a>
+        <h4>¡Bienvenido a Cidenet Shop!</h4>
+        <p><b>Comienza a ver nuestro catálogo.</b><br><b>¡Te encantará!</b></p>
+        <p><b>¿Ya estas registrado? Presiona el boton <br>"Iniciar Sesión"</b></p>
+        <input routerLink="/login" type="submit" name="" value="Iniciar Sesión" /><br />
+      </div>
+      <div class="col-md-9 register-right">
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <h3 class="register-heading">Crear una cuenta</h3>
+            <div class="row register-form">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label class="label">Nombre</label>
+                  <div class="control has-icons-left has-icons-right">
+                    <input type="text" class="input" [class.is-success]="validForm('firstName')"
+                      [class.is-danger]="invalidForm('firstName')" formControlName="firstName" />
+                    <div class="form-error" *ngIf="formGet('firstName')!.errors && formGet('firstName')!.touched">
+                      <p *ngIf="formGet('firstName')!.hasError('required')" class="help is-danger">
+                        Introduce tu nombre
+                      </p>
+                      <p *ngIf="formGet('firstName')!.hasError('pattern')" class="help is-danger">
+                        Tu nombre solo debe contener letras.
+                      </p>
                     </div>
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-arrow-right"></i>
+                    </span>
+                    <span *ngIf="validForm('firstName')" class="icon is-small is-right">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span *ngIf="invalidForm('firstName')" class="icon is-small is-right">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  </div>
+                  <p *ngIf="validForm('firstName')" class="help is-success"></p>
+                  <p *ngIf="invalidForm('firstName')" class="help is-danger"></p>
                 </div>
+                <div class="form-group">
+                  <label class="label">Apellido</label>
+                  <div class="control has-icons-left has-icons-right">
+                    <input type="text" class="input" [class.is-success]="validForm('lastName')"
+                      [class.is-danger]="invalidForm('lastName')" formControlName="lastName" />
+                    <div class="form-error" *ngIf="formGet('lastName')!.errors && formGet('lastName')!.touched">
+                      <p *ngIf="formGet('lastName')!.hasError('required')" class="help is-danger">
+                        Introduce tus apellidos
+                      </p>
+                      <p *ngIf="formGet('lastName')!.hasError('pattern')" class="help is-danger">
+                        Tu nombre solo debe contener letras.
+                      </p>
+                    </div>
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-arrow-right"></i>
+                    </span>
+                    <span *ngIf="validForm('lastName')" class="icon is-small is-right">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span *ngIf="invalidForm('lastName')" class="icon is-small is-right">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  </div>
+                  <p *ngIf="validForm('lastName')" class="help is-success"></p>
+                  <p *ngIf="invalidForm('lastName')" class="help is-danger"></p>
+                </div>
+                <div class="form-group">
+                  <label class="label">Tipo de documento</label>
+                  <div class="control select has-icons-left has-icons-right">
+                    <select class="input" [class.is-success]="validForm('idCardType')"
+                      [class.is-danger]="invalidForm('idCardType')" value="" formControlName="idCardType">
+                      <option value="1">Tarjeta de identidad</option>
+                      <option value="2">Cedula</option>
+                      <option value="3">Pasaporte</option>
+                    </select>
+                    <div class="form-error" *ngIf="formGet('idCardType')!.errors && formGet('idCardType')!.touched">
+                      <p *ngIf="formGet('idCardType')!.hasError('required')" class="help is-danger">
+                      </p>
+                    </div>
+                    <span *ngIf="validForm('idCardType')" class="icon is-small is-left">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span *ngIf="invalidForm('idCardType')" class="icon is-small is-left">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  </div>
+                  <p *ngIf="validForm('idCardType')" class="help is-success"></p>
+                  <p *ngIf="invalidForm('idCardType')" class="help is-danger"></p>
+                </div>
+                <div class="form-group">
+                  <label class="label">Número de documento</label>
+                  <div class="control has-icons-left has-icons-right">
+                    <input type="text" class="input" [class.is-success]="validForm('idCard')"
+                      [class.is-danger]="invalidForm('idCard')" formControlName="idCard" />
+                    <div class="form-error" *ngIf="formGet('idCard')!.errors && formGet('idCard')!.touched">
+                      <p *ngIf="formGet('idCard')!.hasError('required')" class="help is-danger">
+                        Introduce tu número de documento
+                      </p>
+                      <p *ngIf="formGet('idCard')!.hasError('max')" class="help is-danger">
+                        Superaste el máximo 15 dígitos.
+                      </p>
+                      <p *ngIf="formGet('idCard')!.hasError('min')" class="help is-danger">
+                        Debe contener 7 o más dígitos.
+                      </p>
+                      <p *ngIf="formGet('idCard')!.hasError('pattern')" class="help is-danger">
+                        El ID ingresado debe contener solo numeros
+                      </p>
+                    </div>
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-arrow-right"></i>
+                    </span>
+                    <span *ngIf="validForm('idCard')" class="icon is-small is-right">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span *ngIf="invalidForm('idCard')" class="icon is-small is-right">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  </div>
+                  <p *ngIf="validForm('idCard')" class="help is-success"></p>
+                  <p *ngIf="invalidForm('idCard')" class="help is-danger"></p>
+                </div>
+                <div class="form-group">
+                  <label class="label">E-mail</label>
+                  <div class="control has-icons-left has-icons-right">
+                    <input type="text" class="input" placeholder="ejemplo@cidenet.com"
+                      [class.is-success]="validForm('email')" [class.is-danger]="invalidForm('email')"
+                      formControlName="email" />
+                    <div class="form-error" *ngIf="formGet('email')!.errors && formGet('email')!.touched">
+                      <p *ngIf="formGet('email')!.hasError('required')" class="help is-danger">
+                        Introduce tu email
+                      </p>
+                      <p *ngIf="formGet('email')!.hasError('pattern')" class="help is-danger">
+                        Ingresa un email valido (ejemplo@cidenet.com)
+                      </p>
+                    </div>
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-envelope"></i>
+                    </span>
+                    <span *ngIf="validForm('email')" class="icon is-small is-right">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span *ngIf="invalidForm('email')" class="icon is-small is-right">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  </div>
+                  <p *ngIf="validForm('email')" class="help is-success"></p>
+                  <p *ngIf="invalidForm('email')" class="help is-danger"></p>
+                </div>
+                <div class="form-group">
+                  <label class="label">Contraseña</label>
+                  <div class="control has-icons-left has-icons-right">
+                    <input type="password" class="input" [class.is-success]="validForm('password')"
+                      [class.is-danger]="invalidForm('password')" formControlName="password" />
+                    <div class="form-error" *ngIf="formGet('password')!.errors && formGet('password')!.touched">
+                      <p *ngIf="formGet('password')!.hasError('required')" class="help is-danger">
+                        Introduce una contraseña
+                      </p>
+                      <p *ngIf="formGet('password')!.hasError('minlength')" class="help is-danger">
+                        La contraseña debe ser de mínimo 5 o mas dígitos
+                      </p>
+                      <p *ngIf="formGet('password')!.hasError('MustMatch')" class="help is-danger">
+                        Las contraseñas deben ser iguales
+                      </p>
+                    </div>
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                    <span *ngIf="validForm('password')" class="icon is-small is-right">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span *ngIf="invalidForm('password')" class="icon is-small is-right">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  </div>
+                  <p *ngIf="validForm('password')" class="help is-success"></p>
+                  <p *ngIf="invalidForm('password')" class="help is-danger"></p>
+                </div>
+                <div class="form-group">
+                  <label class="label">Confirmar contraseña</label>
+                  <div class="control has-icons-left has-icons-right">
+                    <input type="password" class="input" [class.is-success]="validForm('confirmPass')"
+                      [class.is-danger]="invalidForm('confirmPass')" formControlName="confirmPass" />
+                    <div class="form-error" *ngIf="formGet('confirmPass')!.errors && formGet('confirmPass')!.touched">
+                      <p *ngIf="formGet('confirmPass')!.hasError('required')" class="help is-danger">
+                        Confirma tu contraseña
+                      </p>
+                      <p *ngIf="formGet('confirmPass')!.hasError('validPass')" class="help is-danger">
+                        Las contraseñas deben ser iguales
+                      </p>
+                    </div>
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                    <span *ngIf="validForm('confirmPass')" class="icon is-small is-right">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span *ngIf="invalidForm('confirmPass')" class="icon is-small is-right">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  </div>
+                  <p *ngIf="validForm('confirmPass')" class="help is-success"></p>
+                  <p *ngIf="invalidForm('confirmPass')" class="help is-danger"></p>
+                </div>
+                <button type="submit" class="btnRegister">Continuar</button>
+              </div>
+              <div class="t-and-c">
+                <p class="p-checkbox">
+                  <label class="checkbox">
+                    <input type="checkbox">
+                    Acepto los <a href="#">términos y condiciones</a>
+                  </label>
+                </p>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </form>
+</body>
 <script lang="ts" src="./user.ts"></script>
 <script lang="ts" src="./register.component.ts"></script>s
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
-

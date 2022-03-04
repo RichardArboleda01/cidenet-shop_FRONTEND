@@ -1,6 +1,6 @@
 import { LoginClientService } from './../observablesService/loginClient.service';
 import  Swal from 'sweetalert2';
-import { User } from './../user';
+import { User } from '../appEntity/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';

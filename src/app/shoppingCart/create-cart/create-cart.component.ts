@@ -1,5 +1,5 @@
 import { ShoppingCart } from './../../appEntity/shoppingCart';
-import { Product } from './../../product';
+import { Product } from '../../appEntity/product';
 import { ShoppingCartService } from './../../appService/shoppingCart.service';
 import { Router, RouterLink } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -29,6 +29,9 @@ export class CreateCartComponent implements OnInit {
     this.store.deleteCart(product);
   }
 
+/**
+ * Save the cart to local storage and makes the purchase
+ */
   saveCart() {
     this.store.saveCartLocalStorage();
     this.router.navigate(['/yourOrder/confirmOrder']);

@@ -22,7 +22,7 @@
       <tbody>
         <tr *ngFor="let product of products">
           <td><img style="max-width:80px; max-height:120px;" src={{product.picture}}></td>
-          <td>{{product.name}}</td>
+          <td *ngIf="product.stock <= 0" style="font-size: 10; color: red;">{{product.name}}</td>
           <td>{{product.price}}</td>
           <td>{{product.size}}</td>
           <td style="text-align: center;">{{product.stock}}</td>

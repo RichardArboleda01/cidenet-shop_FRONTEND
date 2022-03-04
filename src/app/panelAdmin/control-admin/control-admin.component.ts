@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import { CustomResponse } from './../../custom-response';
 import { ProductService } from './../../product.service';
 import { AllProductsComponent } from './../../shop/body-shop/all-products/all-products.component';
-import { Product } from './../../product';
+import { Product } from '../../appEntity/product';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
